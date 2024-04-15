@@ -1,80 +1,88 @@
 import React, { useEffect, useState } from "react";
 import "./stylesheet.css";
 import axios from "axios";
+import NavBar from "./NavBar";
+import { useNavigate } from "react-router-dom";
 
 const HomePageV2 = () => {
+  const [expandBody, setExpandBody] = useState(false);
   const [changeNavColor, setChangeNavColor] = useState(false);
+  const [posts, setPosts] = useState([]);
+  const navigate = useNavigate();
 
-  const changeBackground = () => {
-    if (window.scrollY > 50) {
-      setChangeNavColor(true);
-    } else {
-      setChangeNavColor(false);
+  useEffect(() => {
+    hitApi();
+  }, []);
+
+  const hitApi = async () => {
+    try {
+      const response = await axios.get(
+        "https://jsonplaceholder.typicode.com/comments?postId=1"
+      );
+      console.log(response.data);
+      setPosts(response.data.slice(0, 5));
+    } catch (error) {
+      console.log(error);
     }
   };
-  window.addEventListener("scroll", changeBackground);
 
-  //   useEffect(() => {
-  //     hitApi();
-  //   }, []);
+  const handleLearnMore = (id) => {
+    navigate(`/events/${id}`);
+    // /events/:eventsId
+  };
 
-  //   let hitApi = async () => {
-  //     try {
-  //       let response = await axios.get(
-  //         "https://jsonplaceholder.typicode.com/posts"
-  //       );
-  //       console.log(response.data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
+  const getCornerColor = (postId) => {
+    switch (postId) {
+      case 1:
+        return "#ff5733";
+      case 2:
+        return "#00838d";
+      case 3:
+        return "#ffc300";
+
+      default:
+        return "#cccccc";
+    }
+  };
 
   return (
     <div className="main-wrapper">
-      <div className={changeNavColor ? "navColor" : "header-section"}>
-        <div className="header-item">
-          <li>
-            <a href="/">HOME</a>
-          </li>
-          <a href="/">
-            <img
-              src="https://kavyaschool.edu.np/images/Kavya-Ing.svg"
-              alt="Kavya School"
-            />
-          </a>
+      <NavBar />
+      <div className="container">
+        <div className="color-div-section">
+          {posts.map((post, index) => (
+            //  <div className="color-div-card" key={index} style={{ backgroundColor: getCornerColor(post.id) }}>
 
-          <a href="/contact">
-            <button className="contact-btn">
-              <b>CONTACT</b>
-            </button>
-          </a>
+            <div className="color-div-card" key={index}>
+              <div
+                className="go-corner"
+                style={{ backgroundColor: getCornerColor(index) }}
+              ></div>
+              <div className="bottom50">
+                <p>{post.id}</p>
+                <br></br>
+                <h2>{post.email}</h2>
+                <div className="direction-box">
+                  <button>{post.id}</button>
+                  <button>hi</button>
+                  <button>hi</button>
+                </div>
+                <p className="event-description">
+                  {expandBody ? post.body : `${post.body?.slice(0, 55)}...`}
+                  <button
+                    className="learn-more-btn"
+                    onClick={() => handleLearnMore(post.id)}
+                  >
+                    <b>{expandBody ? "Read Less" : "Learn More"}</b>
+                  </button>
+                </p>
+                <p>Hosted By: {post.email}</p>
+                <p>Date: {post.id}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-
-      <div className="color-div-section">
-        <div className="color-div-card">
-          <h3>This is option 1</h3>
-          <p class="small">
-            Card description with lots of great facts and interesting details.
-          </p>
-          <div class="go-corner" href="#"></div>
-        </div>
-        <div className="color-div-card">
-          <h3>This is option 1</h3>
-          <p class="small">
-            Card description with lots of great facts and interesting details.
-          </p>
-          <div class="go-corner" href="#"></div>
-        </div>
-        <div className="color-div-card">
-          <h3>This is option 1</h3>
-          <p class="small">
-            Card description with lots of great facts and interesting details.
-          </p>
-          <div class="go-corner" href="#"></div>
-        </div>
-      </div>
-
       <div className="footer">
         <h1>FOOTER SECTION</h1>{" "}
       </div>
