@@ -104,6 +104,11 @@ body {
   margin: 5rem 10rem;
 }
 
+.container2 {
+  width: 100%;
+  margin: 5rem 0rem;
+}
+
 .first-section {
   width: 100%;
   margin-top: 10rem;
@@ -111,18 +116,21 @@ body {
   gap: 8rem 12rem;
   justify-content: flex-start;
   flex-wrap: wrap;
+  margin-left: 0rem;
 }
 
 .cropped-1 {
   width: 20rem;
   height: 30rem;
-  background-color: #cfe2e5;
+  background-color: #192936;
   border-top-right-radius: 20rem;
   border-bottom-right-radius: 1rem;
   border-bottom-left-radius: 0.5rem;
   border-top-left-radius: 0.5rem;
   position: relative;
   width: calc(33.3% - 8rem);
+  padding: 1px 10px;
+  box-shadow: 3px 3px rgb(93, 105, 151);
 }
 
 .cropped-1 p {
@@ -181,6 +189,10 @@ body {
   gap: 9px;
 }
 
+.bottom50 p {
+  color: black;
+}
+
 .bottom50 button {
   margin: 12px 0;
   width: 2.5rem;
@@ -195,7 +207,7 @@ body {
   margin-top: 10rem;
   display: flex;
   gap: 8rem 3rem;
-  justify-content: flex-start;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
@@ -228,7 +240,7 @@ body {
   display: block;
   position: relative;
   max-width: 28rem;
-  background-color: #c2dbf0;
+  background-color: #192936;
   border-radius: 4px;
   padding: 32px 24px;
   margin: 12px;
@@ -278,12 +290,16 @@ body {
   border-bottom-left-radius: 10rem;
 }
 
-.color-div-card p {
+.color-div-card p,
+.cropped-1 p,
+.cropped-1 h2 {
   font-family: "Poppins";
+  color: rgb(223, 209, 209);
 }
 
 .color-div-card h2 {
-  font-family: "Roboto";
+  font-family: "Poppins";
+  color: rgb(243, 232, 232);
 }
 
 .direction-box {
@@ -292,9 +308,28 @@ body {
   gap: 10px;
 }
 
+.direction-box button {
+  font-size: 10px;
+  width: 3.2rem;
+}
+
 .learn-more-btn {
   background-color: transparent !important;
   cursor: pointer;
   width: 7rem !important;
   font-size: 16px;
+  color: rgb(243, 232, 232);
+}
+
+.learn-more-btn2 {
+  background-color: transparent !important;
+  cursor: pointer;
+  width: 7rem !important;
+  font-size: 16px;
+  color: rgb(243, 232, 232);
+}
+
+.start-end-div {
+  display: flex;
+  flex-direction: row;
 }

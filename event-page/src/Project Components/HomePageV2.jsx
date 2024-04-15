@@ -16,23 +16,35 @@ const HomePageV2 = () => {
 
   const hitApi = async () => {
     try {
-      const response = await axios.get(
-        "https://jsonplaceholder.typicode.com/comments?postId=1"
-      );
+      const response = await axios.get("http://localhost:8000/entry/events");
       console.log(response.data);
-      setPosts(response.data.slice(0, 5));
+      setPosts(response.data.result);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleLearnMore = (id) => {
-    navigate(`/events/${id}`);
-    // /events/:eventsId
+  const getButtonColor = (tag) => {
+    switch (tag.toLowerCase()) {
+      case "east":
+        return "#ff5733"; // Red
+      case "west":
+        return "#8ba0c7"; // Blue
+      case "north":
+        return "#00ff00"; // Green
+      case "south":
+        return "#800080"; // Purple
+      default:
+        return "#ffff00"; // Yellow for any other tag
+    }
   };
 
-  const getCornerColor = (postId) => {
-    switch (postId) {
+  const handleLearnMore = (number) => {
+    navigate(`/events/${number}`);
+  };
+
+  const getCornerColor = (number) => {
+    switch (number) {
       case 1:
         return "#ff5733";
       case 2:
@@ -48,7 +60,7 @@ const HomePageV2 = () => {
   return (
     <div className="main-wrapper">
       <NavBar />
-      <div className="container">
+      <div className="container2">
         <div className="color-div-section">
           {posts.map((post, index) => (
             //  <div className="color-div-card" key={index} style={{ backgroundColor: getCornerColor(post.id) }}>
@@ -59,25 +71,31 @@ const HomePageV2 = () => {
                 style={{ backgroundColor: getCornerColor(index) }}
               ></div>
               <div className="bottom50">
-                <p>{post.id}</p>
-                <br></br>
-                <h2>{post.email}</h2>
+                <h2>{post.title}</h2>
+                <p>{post.college}</p>
                 <div className="direction-box">
-                  <button>{post.id}</button>
-                  <button>hi</button>
-                  <button>hi</button>
+                  <button style={{ backgroundColor: getButtonColor(post.tag) }}>
+                    {post.tag}
+                  </button>
                 </div>
                 <p className="event-description">
-                  {expandBody ? post.body : `${post.body?.slice(0, 55)}...`}
+                  {expandBody
+                    ? post.description
+                    : `${post.description?.slice(0, 80)}...`}
                   <button
-                    className="learn-more-btn"
-                    onClick={() => handleLearnMore(post.id)}
+                    className="learn-more-btn2"
+                    onClick={() => handleLearnMore(post.number)}
                   >
                     <b>{expandBody ? "Read Less" : "Learn More"}</b>
                   </button>
                 </p>
-                <p>Hosted By: {post.email}</p>
-                <p>Date: {post.id}</p>
+                <p>Hosted By: {post.owner}</p>
+                <div className="start-end-div">
+                  <p>Start Date: {post.start_date}</p>
+                  <p>
+                    &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; End Date: {post.end_date}
+                  </p>
+                </div>
               </div>
             </div>
           ))}

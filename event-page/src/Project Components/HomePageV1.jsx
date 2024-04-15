@@ -15,11 +15,9 @@ const HomePageV1 = () => {
 
   const hitApi = async () => {
     try {
-      const response = await axios.get(
-        "https://jsonplaceholder.typicode.com/comments?postId=1"
-      );
+      const response = await axios.get("http://localhost:8000/entry/events");
       console.log(response.data);
-      setPosts(response.data.slice(0, 5));
+      setPosts(response.data.result);
     } catch (error) {
       console.log(error);
     }
@@ -29,9 +27,23 @@ const HomePageV1 = () => {
   //   setExpandBody(!expandBody);
   // };
 
-  const handleLearnMore = (id) => {
-    navigate(`/events/${id}`);
-    // /events/:eventsId
+  const handleLearnMore = (number) => {
+    navigate(`/events/${number}`);
+  };
+
+  const getButtonColor = (tag) => {
+    switch (tag.toLowerCase()) {
+      case "east":
+        return "#ff5733"; // Red
+      case "west":
+        return "#8ba0c7"; // Blue
+      case "north":
+        return "#00ff00"; // Green
+      case "south":
+        return "#800080"; // Purple
+      default:
+        return "#ffff00"; // Yellow for any other tag
+    }
   };
 
   return (
@@ -49,25 +61,31 @@ const HomePageV1 = () => {
               </a>
               <div className="top50"></div>
               <div className="bottom50">
-                <p>{post.id}</p>
-                <br />
-                <p>{post.email}</p>
+                <h2>{post.title}</h2>
+                <p>{post.college}</p>
                 <div className="direction-box">
-                  <button>{post.id}</button>
-                  <button>hi</button>
-                  <button>hi</button>
+                  <button style={{ backgroundColor: getButtonColor(post.tag) }}>
+                    {post.tag}
+                  </button>
                 </div>
                 <p>
-                  {expandBody ? post.body : `${post.body?.slice(0, 50)}...`}
+                  {expandBody
+                    ? post.description
+                    : `${post.description?.slice(0, 50)}...`}
                   <button
                     className="learn-more-btn"
-                    onClick={() => handleLearnMore(post.id)}
+                    onClick={() => handleLearnMore(post.number)}
                   >
                     <b>{expandBody ? "Read Less" : "Learn More"}</b>
                   </button>
                 </p>
-                <p>Hosted By: {post.email}</p>
-                <p>Date: {post.id}</p>
+                <p>Hosted By: {post.owner}</p>
+                <div className="start-end-div">
+                  <p style={{ font: "10px" }}>
+                    Date:&nbsp;&nbsp;{post.start_date}&nbsp; - &nbsp;{" "}
+                    {post.end_date}
+                  </p>
+                </div>
               </div>
             </div>
           ))}
