@@ -92,10 +92,18 @@ export let eventSchema = Schema({
     message: (props) => `${props.value} is not a valid mobile number!`,
   },
 
-  tag: {
-    type: String,
-    trim: true,
-    minLength: [1, "Tag must be at least 1 character long"],
-    maxLength: [30, "Tag must be at most 30 character"],
-  },
+  tag: [
+    {
+      type: String,
+      trim: true,
+      minLength: [1, "Tag must be at least 1 character long"],
+      maxLength: [30, "Tag must be at most 30 characters"],
+      enum: {
+        values: ["center", "east", "west", "north", "south"],
+        message: (notEnum) => {
+          return `${notEnum.value} is not a valid tag`;
+        },
+      },
+    },
+  ],
 });

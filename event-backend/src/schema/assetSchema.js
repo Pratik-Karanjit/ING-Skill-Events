@@ -42,3 +42,78 @@ export let assetSchema = Schema({
     },
   },
 });
+
+// import { Schema } from "mongoose";
+
+// // Schema for the entries within each category
+// const entrySchema = Schema({
+//   placement: {
+//     type: String,
+//     trim: true,
+//     required: true,
+//   },
+//   subject: {
+//     type: String,
+//     trim: true,
+//     required: true,
+//   },
+// });
+
+// // Schema for the parent category
+// export let categorySchema = Schema({
+//   name: {
+//     type: String,
+//     trim: true,
+//     required: true,
+//   },
+//   entries: [entrySchema],
+// });
+
+// categories: [
+//   {
+//     name: "student",
+//     entries: [
+//       {
+//         id: 1,
+//         placement: "first floor",
+//         subject: "science"
+//       },
+//       {
+//         id: 2,
+//         placement: "second floor",
+//         subject: "non-science"
+//       },
+//       {
+//         id: 3,
+//         placement: "third floor",
+//         subject: "humanities"
+//       }
+//     ]
+//   },
+//   {
+//     name: "backdrop",
+//     entries: [
+//       {
+//         placement: "first floor",
+//         subject: "biology"
+//       },
+//       {
+//         placement: "second floor",
+//         subject: "history"
+//       },
+//       {
+//         placement: "third floor",
+//         subject: "literature"
+//       }
+//     ]
+//   }
+// ];
+
+// db.categories.insertOne({
+//   name: "student",
+//   entries: [
+//     { id: 1, placement: "first floor", subject: "science" },
+//     { id: 2, placement: "second floor", subject: "non-science" },
+//     { id: 3, placement: "third floor", subject: "humanities" }
+//   ]
+// });

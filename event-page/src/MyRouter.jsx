@@ -18,8 +18,8 @@ const MyRouter = () => {
           </div>
         }
       >
-        <Route index element={<HomePageV1 />} />
-        {/* <Route index element={<HomePageV2 />} /> */}
+        {/* <Route index element={<HomePageV1 />} /> */}
+        <Route index element={<HomePageV2 />} />
         <Route path="/events/:eventsId" element={<EventDetails />} />
         <Route path="/contact" element={<Contact />} />
 

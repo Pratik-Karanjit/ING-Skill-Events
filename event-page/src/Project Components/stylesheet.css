@@ -153,7 +153,7 @@ body {
 }
 
 .footer {
-  height: 20rem;
+  padding: 5rem;
   background-color: rgb(65, 57, 57);
 
   display: flex;
@@ -308,9 +308,17 @@ body {
   gap: 10px;
 }
 
-.direction-box button {
-  font-size: 10px;
-  width: 3.2rem;
+.direction-buttons button {
+  font-family: "Poppins";
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  width: 3.45rem;
+}
+
+.direction-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
 }
 
 .learn-more-btn {
@@ -319,6 +327,19 @@ body {
   width: 7rem !important;
   font-size: 16px;
   color: rgb(243, 232, 232);
+}
+
+.bottom50 .title-p {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.bottom50 .college-p {
+  font-size: 16px;
+}
+
+.event-description {
+  font-size: 14px;
 }
 
 .learn-more-btn2 {
@@ -332,4 +353,12 @@ body {
 .start-end-div {
   display: flex;
   flex-direction: row;
+}
+
+.event-image {
+  height: 8rem;
+  width: 8rem;
+  position: absolute;
+  right: 80px;
+  top: 30px;
 }

@@ -24,19 +24,21 @@ const HomePageV2 = () => {
     }
   };
 
-  const getButtonColor = (tag) => {
-    switch (tag.toLowerCase()) {
-      case "east":
-        return "#ff5733"; // Red
-      case "west":
-        return "#8ba0c7"; // Blue
-      case "north":
-        return "#00ff00"; // Green
-      case "south":
-        return "#800080"; // Purple
-      default:
-        return "#ffff00"; // Yellow for any other tag
-    }
+  const getButtonColors = (tags) => {
+    return tags.map((tag) => {
+      switch (tag.toLowerCase().trim()) {
+        case "east":
+          return "#ff5733"; // Red for East
+        case "west":
+          return "#8ba0c7"; // Blue for West
+        case "north":
+          return "#00ff00"; // Green for North
+        case "south":
+          return "#800080"; // Purple for South
+        default:
+          return "#ffff00"; // Yellow for any other tag
+      }
+    });
   };
 
   const handleLearnMore = (number) => {
@@ -53,7 +55,7 @@ const HomePageV2 = () => {
         return "#ffc300";
 
       default:
-        return "#cccccc";
+        return "#192936";
     }
   };
 
@@ -63,21 +65,35 @@ const HomePageV2 = () => {
       <div className="container2">
         <div className="color-div-section">
           {posts.map((post, index) => (
-            //  <div className="color-div-card" key={index} style={{ backgroundColor: getCornerColor(post.id) }}>
-
-            <div className="color-div-card" key={index}>
+            <div
+              className="color-div-card"
+              key={index}
+              // style={{ backgroundColor: getHoverBackgroundColor(index) }}
+            >
               <div
                 className="go-corner"
-                style={{ backgroundColor: getCornerColor(index) }}
+                style={{
+                  backgroundColor: getCornerColor(index),
+                  opacity: 0,
+                }}
               ></div>
               <div className="bottom50">
-                <h2>{post.title}</h2>
-                <p>{post.college}</p>
-                <div className="direction-box">
-                  <button style={{ backgroundColor: getButtonColor(post.tag) }}>
-                    {post.tag}
-                  </button>
+                <p className="title-p">{post.title}</p>
+                <p className="college-p">{post.college}</p>
+                <div className="direction-buttons">
+                  {post.tag.map((tagString, idx) => {
+                    const tags = tagString.split(",").map((tag) => tag.trim());
+                    return tags.map((tag, index) => (
+                      <button
+                        key={idx + index} // Use a unique key for each button
+                        style={{ backgroundColor: getButtonColors([tag])[0] }}
+                      >
+                        {tag}
+                      </button>
+                    ));
+                  })}
                 </div>
+
                 <p className="event-description">
                   {expandBody
                     ? post.description
@@ -89,12 +105,33 @@ const HomePageV2 = () => {
                     <b>{expandBody ? "Read Less" : "Learn More"}</b>
                   </button>
                 </p>
-                <p>Hosted By: {post.owner}</p>
+                <p>
+                  Hosted By:{" "}
+                  <b style={{ font: "12px", letterSpacing: "0.5px" }}>
+                    {post.owner}
+                  </b>
+                </p>
                 <div className="start-end-div">
-                  <p>Start Date: {post.start_date}</p>
                   <p>
-                    &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; End Date: {post.end_date}
+                    Start Date:{" "}
+                    <b style={{ font: "12px", letterSpacing: "0.5px" }}>
+                      {post.start_date}
+                    </b>
                   </p>
+                  <p>
+                    &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; End Date:{" "}
+                    <b style={{ font: "12px", letterSpacing: "0.5px" }}>
+                      {post.end_date}
+                    </b>
+                  </p>
+                </div>
+
+                <div>
+                  <img
+                    className="event-image"
+                    src={post.eventImage}
+                    alt="Product"
+                  />
                 </div>
               </div>
             </div>
