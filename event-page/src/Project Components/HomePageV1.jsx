@@ -31,19 +31,21 @@ const HomePageV1 = () => {
     navigate(`/events/${number}`);
   };
 
-  const getButtonColor = (tag) => {
-    switch (tag.toLowerCase()) {
-      case "east":
-        return "#ff5733"; // Red
-      case "west":
-        return "#8ba0c7"; // Blue
-      case "north":
-        return "#00ff00"; // Green
-      case "south":
-        return "#800080"; // Purple
-      default:
-        return "#ffff00"; // Yellow for any other tag
-    }
+  const getButtonColors = (tags) => {
+    return tags.map((tag) => {
+      switch (tag.toLowerCase().trim()) {
+        case "east":
+          return "#ff5733"; // Red for East
+        case "west":
+          return "#8ba0c7"; // Blue for West
+        case "north":
+          return "#00ff00"; // Green for North
+        case "south":
+          return "#800080"; // Purple for South
+        default:
+          return "#ffff00"; // Yellow for any other tag
+      }
+    });
   };
 
   return (
@@ -63,10 +65,18 @@ const HomePageV1 = () => {
               <div className="bottom50">
                 <h2>{post.title}</h2>
                 <p>{post.college}</p>
-                <div className="direction-box">
-                  <button style={{ backgroundColor: getButtonColor(post.tag) }}>
-                    {post.tag}
-                  </button>
+                <div className="direction-buttons">
+                  {post.tag.map((tagString, idx) => {
+                    const tags = tagString.split(",").map((tag) => tag.trim());
+                    return tags.map((tag, index) => (
+                      <button
+                        key={idx + index} // Use a unique key for each button
+                        style={{ backgroundColor: getButtonColors([tag])[0] }}
+                      >
+                        {tag}
+                      </button>
+                    ));
+                  })}
                 </div>
                 <p>
                   {expandBody

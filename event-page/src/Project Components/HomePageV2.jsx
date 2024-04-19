@@ -41,8 +41,9 @@ const HomePageV2 = () => {
     });
   };
 
-  const handleLearnMore = (number) => {
-    navigate(`/events/${number}`);
+  const handleLearnMore = (eventId) => {
+    navigate(`/events/${eventId}`);
+    console.log("eventId from learn more", eventId);
   };
 
   const getCornerColor = (number) => {
@@ -62,7 +63,7 @@ const HomePageV2 = () => {
   return (
     <div className="main-wrapper">
       <NavBar />
-      <div className="container2">
+      <div className="container2 ">
         <div className="color-div-section">
           {posts.map((post, index) => (
             <div
@@ -100,11 +101,12 @@ const HomePageV2 = () => {
                     : `${post.description?.slice(0, 80)}...`}
                   <button
                     className="learn-more-btn2"
-                    onClick={() => handleLearnMore(post.number)}
+                    onClick={() => handleLearnMore(post.eventId)}
                   >
                     <b>{expandBody ? "Read Less" : "Learn More"}</b>
                   </button>
                 </p>
+                <p>{post.eventId}</p>
                 <p>
                   Hosted By:{" "}
                   <b style={{ font: "12px", letterSpacing: "0.5px" }}>

@@ -22,3 +22,25 @@ export const getAllEvents = expressAsyncHandler(async (req, res) => {
     );
   }
 });
+
+export const getEventById = expressAsyncHandler(async (req, res) => {
+  const { eventId } = req.params;
+  console.log("event Id hereeee", eventId);
+  try {
+    console.log("event id again", eventId);
+    const event = await Events.findOne({ eventId: eventId });
+    console.log("event from db", event);
+    if (event) {
+      successResponse(res, HttpStatus.OK, "Event fetched successfully", event);
+    } else {
+      errorResponse(res, HttpStatus.NOT_FOUND, "Event not found");
+    }
+  } catch (error) {
+    console.log("error", error);
+    errorResponse(
+      res,
+      HttpStatus.INTERNAL_SERVER_ERROR,
+      "Error fetching event details"
+    );
+  }
+});

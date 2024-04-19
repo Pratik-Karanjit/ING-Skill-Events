@@ -92,6 +92,11 @@ export let eventSchema = Schema({
     message: (props) => `${props.value} is not a valid mobile number!`,
   },
 
+  eventId: {
+    type: String,
+    trim: true,
+  },
+
   tag: [
     {
       type: String,
