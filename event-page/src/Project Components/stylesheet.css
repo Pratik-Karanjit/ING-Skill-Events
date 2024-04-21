@@ -220,6 +220,7 @@ body {
   cursor: pointer;
   z-index: 1;
   border-radius: 1rem;
+  /* box-shadow: 5px 5px white; */
 }
 
 .go-corner {
@@ -385,4 +386,129 @@ body {
   100% {
     background-color: hsl(200, 20%, 95%);
   }
+}
+
+.event-detail-img {
+  height: 10rem;
+  width: 10rem;
+}
+
+.back-to-events-btn,
+.close-form-btn,
+.add-form-btn {
+  padding: 0.7rem 0.7rem;
+  border-radius: 5px;
+  border: none;
+  margin: 0.5rem;
+  background-color: rgb(65, 57, 57);
+  color: white;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.google-keep {
+  cursor: pointer;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+
+.input-form-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 30%;
+  height: 100%;
+  background-color: #f0f0f0;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-form-container input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+}
+
+.notes-div {
+  height: 10rem;
+  width: 10rem;
+  background-color: antiquewhite;
+}
+
+.notes-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.note {
+  min-width: 50%;
+  max-width: 100%;
+  margin: 5px;
+  padding: 10px;
+  background-color: #f9fff7;
+  border-radius: 5px;
+  overflow-y: auto;
+  min-height: 50px;
+  word-wrap: break-word; /* Allow long words to wrap */
+  height: auto; /* Allow the div to adjust its height */
+}
+
+/*Admin Panel*/
+
+/* styles.css */
+
+.create-section {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
+  background-color: #ffffff;
+  width: 40%;
+  padding: 2.5rem;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+h1 {
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select,
+input[type="file"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+}
+
+button {
+  width: 100%;
+  padding: 1rem;
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+}
+
+.error-message {
+  font-size: 0.875rem;
+  color: #e53e3e;
 }

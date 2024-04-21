@@ -106,7 +106,6 @@ const HomePageV2 = () => {
                     <b>{expandBody ? "Read Less" : "Learn More"}</b>
                   </button>
                 </p>
-                <p>{post.eventId}</p>
                 <p>
                   Hosted By:{" "}
                   <b style={{ font: "12px", letterSpacing: "0.5px" }}>

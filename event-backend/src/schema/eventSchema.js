@@ -15,33 +15,25 @@ export let eventSchema = Schema({
     },
   },
 
-  eventImage: {
-    type: String,
-    trim: true,
-    required: [true, "Image field is required"],
-    minLength: [1, "Image must be at least 1 character long"],
-    maxLength: [50, "Image must be at most 50 character"],
-  },
-
   owner: {
     type: String,
     trim: true,
     required: [true, "Owner field is required"],
     minLength: [1, "Owner must be at least 1 character long"],
     maxLength: [50, "Owner must be at most 50 character"],
-
-    validate: (value) => {
-      if (!/^[a-zA-Z0-9\s]+$/.test(value)) {
-        throw new Error("Only alphabet and space is allowed.");
-      }
-    },
   },
-
   scope: {
     type: String,
     trim: true,
     minLength: [1, "Scope must be at least 1 character long"],
     maxLength: [300, "Scope must be at most 300 character"],
+  },
+  eventImage: {
+    type: String,
+    trim: true,
+    required: [true, "Image field is required"],
+    minLength: [1, "Image must be at least 1 character long"],
+    maxLength: [50, "Image must be at most 50 character"],
   },
 
   description: {
@@ -59,14 +51,14 @@ export let eventSchema = Schema({
   },
 
   start_date: {
-    type: String,
+    type: Date,
     trim: true,
     minLength: [1, "Date must be at least 1 character long"],
     maxLength: [100, "Date must be at most 100 character"],
   },
 
   end_date: {
-    type: String,
+    type: Date,
     trim: true,
     minLength: [1, "Date must be at least 1 character long"],
     maxLength: [100, "Date must be at most 100 character"],
@@ -104,7 +96,7 @@ export let eventSchema = Schema({
       minLength: [1, "Tag must be at least 1 character long"],
       maxLength: [30, "Tag must be at most 30 characters"],
       enum: {
-        values: ["center", "east", "west", "north", "south"],
+        values: ["Center", "East", "West", "North", "South"],
         message: (notEnum) => {
           return `${notEnum.value} is not a valid tag`;
         },

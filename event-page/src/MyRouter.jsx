@@ -5,6 +5,7 @@ import ErrorPage from "./Project Components/ErrorPage.jsx";
 import HomePageV2 from "./Project Components/HomePageV2.jsx";
 import Contact from "./Contact.jsx";
 import EventDetailPage from "./Project Components/EventDetailPage.jsx";
+import AdminPanel from "./Project Components/AdminPanel.jsx";
 
 const MyRouter = () => {
   return (
@@ -22,6 +23,7 @@ const MyRouter = () => {
         <Route index element={<HomePageV2 />} />
         <Route path="/events/:eventId" element={<EventDetailPage />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/adminPanel" element={<AdminPanel />} />
 
         <Route path="*" element={<ErrorPage />} />
       </Route>

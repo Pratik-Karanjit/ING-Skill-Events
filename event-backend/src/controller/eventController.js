@@ -44,3 +44,46 @@ export const getEventById = expressAsyncHandler(async (req, res) => {
     );
   }
 });
+
+export let createEvent = expressAsyncHandler(async (req, res, next) => {
+  console.log(req.body);
+  const {
+    title,
+    owner,
+    scope,
+    description,
+    college,
+    start_date,
+    end_date,
+    budget,
+    tag,
+    status,
+    eventId,
+  } = req.body;
+
+  try {
+    const newEvent = await Events.create({
+      title,
+      owner,
+      scope,
+
+      description,
+      college,
+      start_date,
+      end_date,
+      budget,
+      tag,
+      status,
+      eventId,
+      eventImage: req.file.filename,
+    });
+    successResponse(
+      res,
+      HttpStatus.CREATED,
+      "Event created successfully",
+      newEvent
+    );
+  } catch (error) {
+    console.log("Error creating event", error);
+  }
+});

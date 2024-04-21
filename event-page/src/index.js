@@ -4,15 +4,19 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import MyRouter from "../src/MyRouter.jsx";
+import { Provider } from "react-redux";
+import { store } from "./app/store.js";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <MyRouter />
-      {/* <HomePageV1 /> */}
-      {/* <HomePageV2 /> */}
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <MyRouter />
+        {/* <HomePageV1 /> */}
+        {/* <HomePageV2 /> */}
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 
