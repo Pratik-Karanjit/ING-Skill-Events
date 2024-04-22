@@ -29,7 +29,6 @@ export const getEventById = expressAsyncHandler(async (req, res) => {
   try {
     console.log("event id again", eventId);
     const event = await Events.findOne({ eventId: eventId });
-    console.log("event from db", event);
     if (event) {
       successResponse(res, HttpStatus.OK, "Event fetched successfully", event);
     } else {
@@ -62,15 +61,20 @@ export let createEvent = expressAsyncHandler(async (req, res, next) => {
   } = req.body;
 
   try {
+    // Convert start_date and end_date to mm/dd/yyyy format
+    const formattedStartDate = new Date(start_date).toLocaleDateString("en-US");
+    const formattedEndDate = new Date(end_date).toLocaleDateString("en-US");
+    console.log("formattedStartDate", formattedStartDate);
+    console.log("formattedEndDate", formattedEndDate);
+
     const newEvent = await Events.create({
       title,
       owner,
       scope,
-
       description,
       college,
-      start_date,
-      end_date,
+      start_date: formattedStartDate,
+      end_date: formattedEndDate,
       budget,
       tag,
       status,

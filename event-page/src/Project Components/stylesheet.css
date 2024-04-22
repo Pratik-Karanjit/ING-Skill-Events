@@ -93,6 +93,7 @@ body {
   border-radius: 2px;
   transition: 0.3s;
   margin-top: -5px;
+  color: black;
 }
 
 .contact-btn:hover {
@@ -397,6 +398,7 @@ body {
 .close-form-btn,
 .add-form-btn {
   padding: 0.7rem 0.7rem;
+  width: auto;
   border-radius: 5px;
   border: none;
   margin: 0.5rem;

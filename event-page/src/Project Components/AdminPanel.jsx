@@ -55,7 +55,7 @@ const AdminPanel = () => {
         formData
       );
       console.log("Event created successfully");
-      navigate("/admin");
+      navigate("/");
     } catch (error) {
       console.log("Unable to create product:", error);
     }

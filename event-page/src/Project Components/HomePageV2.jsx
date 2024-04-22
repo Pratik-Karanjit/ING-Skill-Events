@@ -18,7 +18,13 @@ const HomePageV2 = () => {
     try {
       const response = await axios.get("http://localhost:8000/entry/events");
       console.log(response.data);
-      setPosts(response.data.result);
+      // Convert date formats before setting them into state
+      const formattedPosts = response.data.result.map((post) => ({
+        ...post,
+        start_date: new Date(post.start_date).toLocaleDateString("en-US"),
+        end_date: new Date(post.end_date).toLocaleDateString("en-US"),
+      }));
+      setPosts(formattedPosts);
     } catch (error) {
       console.log(error);
     }
@@ -129,8 +135,9 @@ const HomePageV2 = () => {
 
                 <div>
                   <img
+                    src={`http://localhost:8000/${post.eventImage}`}
                     className="event-image"
-                    src={post.eventImage}
+                    // src={post.eventImage}
                     alt="Product"
                   />
                 </div>

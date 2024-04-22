@@ -75,7 +75,7 @@ function EventDetailPage() {
           </p>
           <img
             className="event-detail-img"
-            src={event.result.eventImage}
+            src={`http://localhost:8000/${event.result.eventImage}`}
             alt="image"
           />
         </div>
