@@ -390,8 +390,8 @@ body {
 }
 
 .event-detail-img {
-  height: 10rem;
-  width: 10rem;
+  height: 20rem;
+  width: 30rem;
 }
 
 .back-to-events-btn,
@@ -411,8 +411,8 @@ body {
 .google-keep {
   cursor: pointer;
   position: absolute;
-  right: 1rem;
-  top: 1rem;
+  right: 2rem;
+  top: 5rem;
 }
 
 .input-form-container {
@@ -513,4 +513,100 @@ button {
 .error-message {
   font-size: 0.875rem;
   color: #e53e3e;
+}
+
+.event-container {
+  padding-top: 90px;
+}
+
+.event-details {
+  display: flex;
+  flex-direction: column;
+  padding: 8rem;
+  gap: 20px;
+  position: relative;
+}
+
+.event-details p,
+h1 {
+  font-family: "Poppins";
+  letter-spacing: 1px;
+  line-height: 30px;
+}
+
+.event-details h1 {
+  text-transform: uppercase;
+}
+
+.date-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 80px;
+}
+
+.start-end-container {
+  margin: 0;
+  position: relative;
+  right: 10rem;
+  top: 8.5rem;
+}
+
+.event-detail-tag {
+  width: 5rem;
+  height: 3rem;
+}
+
+.manpower-resource-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  padding: 7rem 20rem;
+  gap: 15rem;
+}
+
+.manpower-container {
+  width: 50vw;
+}
+
+.resource-container {
+  width: 50vw;
+}
+
+.manpower-table {
+  width: 100%;
+}
+
+.manpower-tr,
+.resource-tr {
+  height: 3rem;
+}
+
+.manpower-th,
+.manpower-td,
+.resource-th,
+.resource-td {
+  padding: 8px;
+  font-family: "Poppins";
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  line-height: 30px;
+  letter-spacing: 0.7px;
+}
+
+.resource-th,
+.manpower-th {
+  background-color: #f9fafb;
+}
+
+.manpower-heading,
+.resource-heading {
+  font-family: "Poppins";
+  font-size: 20px;
+  text-align: left;
+  height: 4rem;
 }
