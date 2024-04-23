@@ -5,6 +5,7 @@ import googleKeep from "../Photos/google_keep.png";
 import { useDispatch } from "react-redux";
 import { setNote } from "../features/noteSlice.js";
 import NavBar from "./NavBar.jsx";
+import Footer from "./Footer.jsx";
 
 async function fetchEvents(eventId) {
   const response = await axios.get(
@@ -85,47 +86,92 @@ function EventDetailPage() {
 
   return (
     <>
-      <NavBar />
-      <div className="event-container">
-        {event ? (
-          <>
-            <img
+      {/* <img
               className="event-detail-img"
               src={`http://localhost:8000/${event.result.eventImage}`}
               alt="image"
-            />
+            /> */}
+      <NavBar />
+      <div className="custom-shape-divider-bottom-1713862348">
+        <svg
+          data-name="Layer 1"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1200 120"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0,60 Q300,20 600,60 Q900,100 1200,60 V0 H0 V60"
+            class="shape-fill"
+          ></path>
+        </svg>
+      </div>
+      <div className="event-container">
+        {event ? (
+          <>
+            {/* <img
+        className="event-detail-img"
+        src={`http://localhost:8000/${event.result.eventImage}`}
+        alt="image"
+      /> */}
             <div className="event-details">
               <h1>{event.result?.title}</h1>
-              <p>
-                <b>SCOPE:</b> {event.result?.scope}
-              </p>
-              <div className="date-container">
-                <p className="start-end-container">
-                  <b>START DATE: {event.result?.start_date}</b>
-                </p>
-                <p className="start-end-container">
-                  <b>END DATE: {event.result?.end_date}</b>
-                </p>
-              </div>
-              <p>
-                <b>OWNER:</b> {event.result?.owner}
-              </p>
-              {event.result.tag.map((tagString, idx) => {
-                const tags = tagString.split(",").map((tag) => tag.trim());
-                return tags.map((tag, index) => (
-                  <button
-                    className="event-detail-tag"
-                    key={idx + index} // Use a unique key for each button
-                    style={{ backgroundColor: getButtonColors([tag])[0] }}
-                  >
-                    {tag}
-                  </button>
-                ));
-              })}
-              <p>
-                {" "}
-                <b>DESCRIPTION:</b> {event.result.description}
-              </p>
+              <table className="event-table">
+                <tbody>
+                  <tr>
+                    <td className="table-header">
+                      <b>SCOPE</b>
+                    </td>
+                    <td>{event.result?.scope}</td>
+                  </tr>
+                  <tr>
+                    <td className="table-header">
+                      <b>START DATE</b>
+                    </td>
+                    <td>{event.result?.start_date}</td>
+                  </tr>
+                  <tr>
+                    <td className="table-header">
+                      <b>END DATE</b>
+                    </td>
+                    <td>{event.result?.end_date}</td>
+                  </tr>
+                  <tr>
+                    <td className="table-header">
+                      <b>OWNER</b>
+                    </td>
+                    <td>{event.result?.owner}</td>
+                  </tr>
+                  <tr>
+                    <td className="table-header">
+                      <b>TAG</b>
+                    </td>
+                    <td>
+                      {event.result.tag.map((tagString, idx) => {
+                        const tags = tagString
+                          .split(",")
+                          .map((tag) => tag.trim());
+                        return tags.map((tag, index) => (
+                          <button
+                            key={idx + index}
+                            className="event-detail-tag"
+                            style={{
+                              backgroundColor: getButtonColors([tag])[0],
+                            }}
+                          >
+                            {tag}
+                          </button>
+                        ));
+                      })}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="table-header">
+                      <b>DESCRIPTION</b>
+                    </td>
+                    <td>{event.result.description}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </>
         ) : (
@@ -216,6 +262,36 @@ function EventDetailPage() {
           </div>
         </div>
 
+        <div className="branding-container">
+          <table className="manpower-table">
+            <tr className="manpower-tr">
+              <th className="manpower-heading" colspan="3">
+                Branding
+              </th>
+            </tr>
+            <tr>
+              <th className="manpower-th">Category</th>
+              <th className="manpower-th">Asset</th>
+              <th className="manpower-th">Quantity</th>
+              <th className="manpower-th">Place</th>
+            </tr>
+            <tr>
+              <td className="manpower-td">Pratik Karanjit </td>
+              <td className="manpower-td">Manage overall event.</td>
+              <td className="manpower-td">9837123122</td>
+              <td className="manpower-td">Outside main gate</td>
+            </tr>
+            <tr>
+              <td className="manpower-td">Ram Prasad </td>
+              <td className="manpower-td">
+                Manage incoming audience and traffic.{" "}
+              </td>
+              <td className="manpower-td">9837123122</td>
+              <td className="manpower-td">Outside main gate</td>
+            </tr>
+          </table>
+        </div>
+
         <button className="back-to-events-btn" onClick={() => navigate("/")}>
           Back to events
         </button>
@@ -227,6 +303,7 @@ function EventDetailPage() {
           alt="google-keep"
         />
       </div>
+      <Footer />
     </>
   );
 }

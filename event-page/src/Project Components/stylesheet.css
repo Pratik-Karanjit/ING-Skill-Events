@@ -25,6 +25,7 @@ body {
   height: 90px;
   background: transparent;
   position: fixed;
+  z-index: 9;
   top: 0;
   transition: all 0.5s;
 }
@@ -86,7 +87,7 @@ body {
 .contact-btn {
   font-size: 14px;
   background-color: rgba(255, 255, 255, 255);
-  height: 2.5rem;
+  height: 3rem;
   width: 9rem;
   border: none;
   cursor: pointer;
@@ -411,8 +412,8 @@ body {
 .google-keep {
   cursor: pointer;
   position: absolute;
-  right: 2rem;
-  top: 5rem;
+  right: 2.5rem;
+  top: 6rem;
 }
 
 .input-form-container {
@@ -522,7 +523,10 @@ button {
 .event-details {
   display: flex;
   flex-direction: column;
-  padding: 8rem;
+  padding-top: 25rem;
+  padding-left: 8rem;
+  padding-right: 8rem;
+  padding-bottom: 8rem;
   gap: 20px;
   position: relative;
 }
@@ -565,8 +569,8 @@ h1 {
   align-items: center;
   flex-direction: row;
   width: 100%;
-  padding: 7rem 20rem;
-  gap: 15rem;
+  padding: 7rem 3rem;
+  gap: 8rem;
 }
 
 .manpower-container {
@@ -575,6 +579,10 @@ h1 {
 
 .resource-container {
   width: 50vw;
+}
+
+.resource-table {
+  width: 100%;
 }
 
 .manpower-table {
@@ -609,4 +617,44 @@ h1 {
   font-size: 20px;
   text-align: left;
   height: 4rem;
+}
+
+.branding-container {
+  padding: 5rem 10rem;
+}
+
+svg {
+  position: absolute;
+  height: 50rem;
+  width: 100%;
+}
+
+.shape-fill {
+  fill: #9f5c5c;
+}
+/* .shape-wrapper {
+  position: relative;
+} */
+
+.event-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.event-table td {
+  font-family: "Poppins";
+  padding: 12px;
+  letter-spacing: 1px;
+  line-height: 30px;
+  /* border-bottom: 1px solid #ddd; */
+}
+
+.table-header {
+  font-weight: bold;
+  width: 30%;
+}
+
+.event-detail-tag {
+  margin-right: 5px;
 }

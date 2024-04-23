@@ -3,6 +3,7 @@ import "./stylesheet.css";
 import axios from "axios";
 import NavBar from "./NavBar";
 import { useNavigate } from "react-router-dom";
+import Footer from "./Footer";
 
 const HomePageV2 = () => {
   const [expandBody, setExpandBody] = useState(false);
@@ -146,11 +147,7 @@ const HomePageV2 = () => {
           ))}
         </div>
       </div>
-      <div className="footer">
-        <h1>FOOTER SECTION</h1>{" "}
-      </div>
-
-      <div className="copyright">Copyright © ING Skill Events</div>
+      <Footer />
     </div>
   );
 };
