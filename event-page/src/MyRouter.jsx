@@ -6,6 +6,9 @@ import HomePageV2 from "./Project Components/HomePageV2.jsx";
 import Contact from "./Contact.jsx";
 import EventDetailPage from "./Project Components/EventDetailPage.jsx";
 import AdminPanel from "./Project Components/AdminPanel.jsx";
+import CreateManpower from "./Project Components/CreateManpower.jsx";
+import CreateBranding from "./Project Components/CreateBranding.jsx";
+import CreateResource from "./Project Components/CreateResource.jsx";
 
 const MyRouter = () => {
   return (
@@ -24,6 +27,9 @@ const MyRouter = () => {
         <Route path="/events/:eventId" element={<EventDetailPage />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/adminPanel" element={<AdminPanel />} />
+        <Route path="/createManpower" element={<CreateManpower />} />
+        <Route path="/createResource" element={<CreateResource />} />
+        <Route path="/createBranding" element={<CreateBranding />} />
 
         <Route path="*" element={<ErrorPage />} />
       </Route>

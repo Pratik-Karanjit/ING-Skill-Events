@@ -623,7 +623,7 @@ h1 {
   padding: 5rem 10rem;
 }
 
-svg {
+.detail-page-svg {
   position: absolute;
   height: 50rem;
   width: 100%;

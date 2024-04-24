@@ -2,7 +2,7 @@ import { HttpStatus, baseUrl } from "../config/constant.js";
 import successResponse from "../helper/successResponse.js";
 import expressAsyncHandler from "express-async-handler";
 import errorResponse from "../helper/ErrorResponse.js";
-import { Events } from "../schema/model.js";
+import { Branding, Events, Manpower, Resource } from "../schema/model.js";
 
 export const getAllEvents = expressAsyncHandler(async (req, res) => {
   try {
@@ -25,9 +25,9 @@ export const getAllEvents = expressAsyncHandler(async (req, res) => {
 
 export const getEventById = expressAsyncHandler(async (req, res) => {
   const { eventId } = req.params;
-  console.log("event Id hereeee", eventId);
+  // console.log("event Id hereeee", eventId);
   try {
-    console.log("event id again", eventId);
+    // console.log("event id again", eventId);
     const event = await Events.findOne({ eventId: eventId });
     if (event) {
       successResponse(res, HttpStatus.OK, "Event fetched successfully", event);
@@ -89,5 +89,68 @@ export let createEvent = expressAsyncHandler(async (req, res, next) => {
     );
   } catch (error) {
     console.log("Error creating event", error);
+  }
+});
+
+export let createManpower = expressAsyncHandler(async (req, res, next) => {
+  console.log(req.body);
+  const { name, responsibility, mobile_number } = req.body;
+
+  try {
+    const newManpower = await Manpower.create({
+      name,
+      responsibility,
+      mobile_number,
+    });
+    successResponse(
+      res,
+      HttpStatus.CREATED,
+      "Manpower created successfully",
+      newManpower
+    );
+  } catch (error) {
+    console.log("Error creating manpower", error);
+  }
+});
+
+export let createBranding = expressAsyncHandler(async (req, res, next) => {
+  console.log(req.body);
+  const { category, asset, quantity, placement } = req.body;
+
+  try {
+    const newBranding = await Branding.create({
+      category,
+      asset,
+      quantity,
+      placement,
+    });
+    successResponse(
+      res,
+      HttpStatus.CREATED,
+      "Branding created successfully",
+      newBranding
+    );
+  } catch (error) {
+    console.log("Error creating branding.", error);
+  }
+});
+
+export let createResource = expressAsyncHandler(async (req, res, next) => {
+  console.log(req.body);
+  const { item, quantity } = req.body;
+
+  try {
+    const newResource = await Resource.create({
+      item,
+      quantity,
+    });
+    successResponse(
+      res,
+      HttpStatus.CREATED,
+      "Resource created successfully",
+      newResource
+    );
+  } catch (error) {
+    console.log("Error creating resource", error);
   }
 });

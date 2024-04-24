@@ -94,6 +94,7 @@ function EventDetailPage() {
       <NavBar />
       <div className="custom-shape-divider-bottom-1713862348">
         <svg
+          className="detail-page-svg"
           data-name="Layer 1"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1200 120"
@@ -242,21 +243,16 @@ function EventDetailPage() {
                 </th>
               </tr>
               <tr>
-                <th className="resource-th">Name</th>
-                <th className="resource-th">Responsibility</th>
-                <th className="resource-th">Mobile Number</th>
+                <th className="resource-th">Item</th>
+                <th className="resource-th">Quantity</th>
               </tr>
               <tr>
-                <td className="resource-td">Pratik Karanjit </td>
-                <td className="resource-td">Manage overall event.</td>
-                <td className="resource-td">9837123122</td>
+                <td className="resource-td">Display Boards </td>
+                <td className="resource-td">24</td>
               </tr>
               <tr>
-                <td className="resource-td">Ram Prasad </td>
-                <td className="resource-td">
-                  Manage incoming audience and traffic.{" "}
-                </td>
-                <td className="resource-td">9837123122</td>
+                <td className="resource-td">Magazines </td>
+                <td className="resource-td">2</td>
               </tr>
             </table>
           </div>

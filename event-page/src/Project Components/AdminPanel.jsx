@@ -219,6 +219,30 @@ const AdminPanel = () => {
               />
             </div>
             <button type="submit">Create Event</button>
+            <button
+              style={{ marginTop: "20px" }}
+              onClick={(e) => {
+                navigate("/createManpower");
+              }}
+            >
+              Create Manpower
+            </button>
+            <button
+              style={{ marginTop: "20px" }}
+              onClick={(e) => {
+                navigate("/createResource");
+              }}
+            >
+              Create Resource
+            </button>
+            <button
+              style={{ marginTop: "20px" }}
+              onClick={(e) => {
+                navigate("/createBranding");
+              }}
+            >
+              Create Branding
+            </button>
           </Form>
         </Formik>
       </div>
