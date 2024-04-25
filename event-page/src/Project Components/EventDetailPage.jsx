@@ -19,6 +19,8 @@ function EventDetailPage() {
   const { eventId } = useParams();
   console.log("event id here", eventId);
   const [event, setEvent] = useState(null);
+  const [manpower, setManpower] = useState(null);
+  const [resource, setResource] = useState(null);
   const [showInputForm, setShowInputForm] = useState(false);
   const [newNote, setNewNote] = useState("");
   const [notes, setNotes] = useState([]);
@@ -28,7 +30,7 @@ function EventDetailPage() {
   const fetchData = async () => {
     try {
       const eventData = await fetchEvents(eventId);
-      console.log("event data", eventData);
+      // console.log("event data", eventData);
       // Format start_date and end_date here
       eventData.result.start_date = new Date(
         eventData.result.start_date
@@ -37,7 +39,7 @@ function EventDetailPage() {
         eventData.result.end_date
       ).toLocaleDateString("en-US");
       setEvent(eventData);
-      console.log("Fetched events data:", eventData);
+      // console.log("Fetched events data:", eventData);
     } catch (error) {
       console.error("Error fetching events details:", error);
     }
@@ -46,6 +48,40 @@ function EventDetailPage() {
   useEffect(() => {
     fetchData();
   }, [eventId]);
+
+  const fetchManpower = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8000/entry/getManpower/${eventId}`
+      );
+
+      // console.log("Manpower response", response.data.result);
+      setManpower(response.data.result);
+    } catch (error) {
+      console.log("man power error:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchManpower();
+  }, []);
+
+  const fetchResource = async () => {
+    try {
+      const resourceResponse = await axios.get(
+        `http://localhost:8000/entry/getResource/${eventId}`
+      );
+      // console.log("*********resource", resourceResponse);
+      setResource(resourceResponse.data.result);
+    } catch (error) {
+      console.log("Resource error:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchResource();
+  }, []);
+
   const getButtonColors = (tags) => {
     return tags.map((tag) => {
       switch (tag.toLowerCase().trim()) {
@@ -92,28 +128,15 @@ function EventDetailPage() {
               alt="image"
             /> */}
       <NavBar />
-      <div className="custom-shape-divider-bottom-1713862348">
-        <svg
-          className="detail-page-svg"
-          data-name="Layer 1"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0,60 Q300,20 600,60 Q900,100 1200,60 V0 H0 V60"
-            class="shape-fill"
-          ></path>
-        </svg>
-      </div>
+
       <div className="event-container">
         {event ? (
           <>
-            {/* <img
-        className="event-detail-img"
-        src={`http://localhost:8000/${event.result.eventImage}`}
-        alt="image"
-      /> */}
+            <img
+              className="event-detail-img"
+              src={`http://localhost:8000/${event.result.eventImage}`}
+              alt="image"
+            />
             <div className="event-details">
               <h1>{event.result?.title}</h1>
               <table className="event-table">
@@ -209,53 +232,63 @@ function EventDetailPage() {
         )}
 
         <div className="manpower-resource-container">
-          <div className="manpower-container">
-            <table className="manpower-table">
-              <tr className="manpower-tr">
-                <th className="manpower-heading" colspan="3">
-                  Manpower
-                </th>
-              </tr>
-              <tr>
-                <th className="manpower-th">Name</th>
-                <th className="manpower-th">Responsibility</th>
-                <th className="manpower-th">Mobile Number</th>
-              </tr>
-              <tr>
-                <td className="manpower-td">Pratik Karanjit </td>
-                <td className="manpower-td">Manage overall event.</td>
-                <td className="manpower-td">9837123122</td>
-              </tr>
-              <tr>
-                <td className="manpower-td">Ram Prasad </td>
-                <td className="manpower-td">
-                  Manage incoming audience and traffic.{" "}
-                </td>
-                <td className="manpower-td">9837123122</td>
-              </tr>
-            </table>
-          </div>
-          <div className="resource-container">
-            <table className="resource-table">
-              <tr className="resource-tr">
-                <th className="resource-heading" colspan="3">
-                  Resource
-                </th>
-              </tr>
-              <tr>
-                <th className="resource-th">Item</th>
-                <th className="resource-th">Quantity</th>
-              </tr>
-              <tr>
-                <td className="resource-td">Display Boards </td>
-                <td className="resource-td">24</td>
-              </tr>
-              <tr>
-                <td className="resource-td">Magazines </td>
-                <td className="resource-td">2</td>
-              </tr>
-            </table>
-          </div>
+          {manpower ? (
+            <div className="manpower-container">
+              <table className="manpower-table">
+                <thead>
+                  <tr className="manpower-tr">
+                    <th className="manpower-heading" colSpan="3">
+                      Manpower
+                    </th>
+                  </tr>
+                  <tr>
+                    <th className="manpower-th">Name</th>
+                    <th className="manpower-th">Responsibility</th>
+                    <th className="manpower-th">Mobile Number</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {manpower.map((person, index) => (
+                    <tr key={index}>
+                      <td className="manpower-td">{person.name}</td>
+                      <td className="manpower-td">{person.responsibility}</td>
+                      <td className="manpower-td">{person.mobile_number}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <p>No manpower data available</p>
+          )}
+
+          {resource ? (
+            <div className="resource-container">
+              <table className="resource-table">
+                <thead>
+                  <tr className="resource-tr">
+                    <th className="resource-heading" colSpan="2">
+                      Resource
+                    </th>
+                  </tr>
+                  <tr>
+                    <th className="resource-th">Item</th>
+                    <th className="resource-th">Quantity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {resource.map((resource, index) => (
+                    <tr key={index}>
+                      <td className="manpower-td">{resource.item}</td>
+                      <td className="manpower-td">{resource.quantity}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <p>No resource data available</p>
+          )}
         </div>
 
         <div className="branding-container">
@@ -288,9 +321,6 @@ function EventDetailPage() {
           </table>
         </div>
 
-        <button className="back-to-events-btn" onClick={() => navigate("/")}>
-          Back to events
-        </button>
         <br />
         <img
           onClick={toggleInputForm}

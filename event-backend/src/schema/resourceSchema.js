@@ -16,4 +16,8 @@ export let resourceSchema = Schema({
     maxLength: [100, "Quantity must be at most 100 character"],
     message: (props) => `${props.value} is not a valid quantity!`,
   },
+  eventId: {
+    type: String,
+    trim: true,
+  },
 });

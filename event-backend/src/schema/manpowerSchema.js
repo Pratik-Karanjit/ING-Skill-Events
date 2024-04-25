@@ -31,4 +31,8 @@ export let manpowerSchema = Schema({
 
     message: (props) => `${props.value} is not a valid mobile number!`,
   },
+  eventId: {
+    type: String,
+    trim: true,
+  },
 });

@@ -9,6 +9,7 @@ import AdminPanel from "./Project Components/AdminPanel.jsx";
 import CreateManpower from "./Project Components/CreateManpower.jsx";
 import CreateBranding from "./Project Components/CreateBranding.jsx";
 import CreateResource from "./Project Components/CreateResource.jsx";
+import Abc from "./Project Components/Abc.jsx";
 
 const MyRouter = () => {
   return (
@@ -30,6 +31,7 @@ const MyRouter = () => {
         <Route path="/createManpower" element={<CreateManpower />} />
         <Route path="/createResource" element={<CreateResource />} />
         <Route path="/createBranding" element={<CreateBranding />} />
+        <Route path="/abc" element={<Abc />} />
 
         <Route path="*" element={<ErrorPage />} />
       </Route>

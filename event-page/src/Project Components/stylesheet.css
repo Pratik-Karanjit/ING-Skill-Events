@@ -52,7 +52,7 @@ body {
   position: fixed;
   top: 0;
   transition: all 0.5s;
-  z-index: 9999;
+  z-index: 9;
 }
 
 .navColor .header-item li a {
@@ -259,7 +259,7 @@ body {
     z-index: -1;
     top: -16px;
     right: -16px;
-    background: rgb(199, 46, 46);
+    background: rgb(201 70 70);
     height: 42px;
     width: 42px;
     border-radius: 32px;
@@ -391,8 +391,12 @@ body {
 }
 
 .event-detail-img {
-  height: 20rem;
-  width: 30rem;
+  width: 100%;
+  height: 50vh;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 100% 90%, 50% 100%, 0 90%);
 }
 
 .back-to-events-btn,
@@ -411,7 +415,7 @@ body {
 
 .google-keep {
   cursor: pointer;
-  position: absolute;
+  position: fixed;
   right: 2.5rem;
   top: 6rem;
 }
@@ -425,6 +429,7 @@ body {
   background-color: #f0f0f0;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 10;
 }
 
 .input-form-container input[type="text"] {
@@ -526,8 +531,8 @@ button {
   padding-top: 25rem;
   padding-left: 8rem;
   padding-right: 8rem;
-  padding-bottom: 8rem;
   gap: 20px;
+  margin: 5rem 5rem;
   position: relative;
 }
 
@@ -540,6 +545,7 @@ h1 {
 
 .event-details h1 {
   text-transform: uppercase;
+  font-size: 38px;
 }
 
 .date-container {
@@ -569,7 +575,7 @@ h1 {
   align-items: center;
   flex-direction: row;
   width: 100%;
-  padding: 7rem 3rem;
+  padding: 5rem 3rem;
   gap: 8rem;
 }
 
@@ -620,7 +626,7 @@ h1 {
 }
 
 .branding-container {
-  padding: 5rem 10rem;
+  padding: 3rem 3rem;
 }
 
 .detail-page-svg {
@@ -647,6 +653,8 @@ h1 {
   padding: 12px;
   letter-spacing: 1px;
   line-height: 30px;
+  vertical-align: top;
+  text-align: left;
   /* border-bottom: 1px solid #ddd; */
 }
 

@@ -113,6 +113,67 @@ export let createManpower = expressAsyncHandler(async (req, res, next) => {
   }
 });
 
+export const getManpowerById = expressAsyncHandler(async (req, res) => {
+  const { eventId } = req.params;
+  // console.log("params", eventId);
+  try {
+    const manpowers = await Manpower.find({ eventId: eventId });
+
+    successResponse(
+      res,
+      HttpStatus.OK,
+      "Manpower fetched successfully",
+      manpowers
+    );
+  } catch (error) {
+    errorResponse(
+      res,
+      HttpStatus.INTERNAL_SERVER_ERROR,
+      "Error fetching Manpower"
+    );
+  }
+});
+
+export const getResourceById = expressAsyncHandler(async (req, res) => {
+  const { eventId } = req.params;
+  console.log("params of resource", eventId);
+  try {
+    const resource = await Resource.find({ eventId: eventId });
+
+    successResponse(
+      res,
+      HttpStatus.OK,
+      "resource fetched successfully",
+      resource
+    );
+  } catch (error) {
+    errorResponse(
+      res,
+      HttpStatus.INTERNAL_SERVER_ERROR,
+      "Error fetching resource"
+    );
+  }
+});
+
+// export const getAllResource = expressAsyncHandler(async (req, res) => {
+//   try {
+//     const resources = await Resource.find();
+
+//     successResponse(
+//       res,
+//       HttpStatus.OK,
+//       "Resource fetched successfully",
+//       resources
+//     );
+//   } catch (error) {
+//     errorResponse(
+//       res,
+//       HttpStatus.INTERNAL_SERVER_ERROR,
+//       "Error fetching Resource"
+//     );
+//   }
+// });
+
 export let createBranding = expressAsyncHandler(async (req, res, next) => {
   console.log(req.body);
   const { category, asset, quantity, placement } = req.body;
