@@ -136,7 +136,7 @@ export const getManpowerById = expressAsyncHandler(async (req, res) => {
 
 export const getResourceById = expressAsyncHandler(async (req, res) => {
   const { eventId } = req.params;
-  console.log("params of resource", eventId);
+  // console.log("params of resource", eventId);
   try {
     const resource = await Resource.find({ eventId: eventId });
 
@@ -151,6 +151,27 @@ export const getResourceById = expressAsyncHandler(async (req, res) => {
       res,
       HttpStatus.INTERNAL_SERVER_ERROR,
       "Error fetching resource"
+    );
+  }
+});
+
+export const getBrandingById = expressAsyncHandler(async (req, res) => {
+  const { eventId } = req.params;
+  console.log("branding params", eventId);
+  try {
+    const branding = await Branding.find({ eventId: eventId });
+
+    successResponse(
+      res,
+      HttpStatus.OK,
+      "Branding fetched successfully",
+      branding
+    );
+  } catch (error) {
+    errorResponse(
+      res,
+      HttpStatus.INTERNAL_SERVER_ERROR,
+      "Error fetching branding"
     );
   }
 });

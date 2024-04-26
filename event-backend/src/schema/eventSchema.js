@@ -88,19 +88,25 @@ export let eventSchema = Schema({
     type: String,
     trim: true,
   },
+  // placement: {
+  //   type: [String],
+  //   trim: true,
+  //   enum: {
+  //     values: ["Main Gate", "Ground Floor", "Entrance Door", "Roof top"],
+  //     message: (notEnum) => {
+  //       return `${notEnum.value} is not a valid Asset`;
+  //     },
+  //   },
+  // },
 
-  tag: [
-    {
-      type: String,
-      trim: true,
-      minLength: [1, "Tag must be at least 1 character long"],
-      maxLength: [30, "Tag must be at most 30 characters"],
-      enum: {
-        values: ["Center", "East", "West", "North", "South"],
-        message: (notEnum) => {
-          return `${notEnum.value} is not a valid tag`;
-        },
+  tag: {
+    type: [String],
+    trim: true,
+    enum: {
+      values: ["Center", "East", "West", "North", "South"],
+      message: (notEnum) => {
+        return `${notEnum.value} is not a valid tag`;
       },
     },
-  ],
+  },
 });

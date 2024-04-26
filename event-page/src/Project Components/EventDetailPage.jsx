@@ -21,6 +21,7 @@ function EventDetailPage() {
   const [event, setEvent] = useState(null);
   const [manpower, setManpower] = useState(null);
   const [resource, setResource] = useState(null);
+  const [branding, setBranding] = useState(null);
   const [showInputForm, setShowInputForm] = useState(false);
   const [newNote, setNewNote] = useState("");
   const [notes, setNotes] = useState([]);
@@ -80,6 +81,22 @@ function EventDetailPage() {
 
   useEffect(() => {
     fetchResource();
+  }, []);
+
+  const fetchBranding = async () => {
+    try {
+      const brandingResponse = await axios.get(
+        `http://localhost:8000/entry/getBranding/${eventId}`
+      );
+      // console.log("*********resource", resourceResponse);
+      setBranding(brandingResponse.data.result);
+    } catch (error) {
+      console.log("Branding error:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchBranding();
   }, []);
 
   const getButtonColors = (tags) => {
@@ -290,35 +307,42 @@ function EventDetailPage() {
             <p>No resource data available</p>
           )}
         </div>
-
         <div className="branding-container">
-          <table className="manpower-table">
-            <tr className="manpower-tr">
-              <th className="manpower-heading" colspan="3">
-                Branding
-              </th>
-            </tr>
-            <tr>
-              <th className="manpower-th">Category</th>
-              <th className="manpower-th">Asset</th>
-              <th className="manpower-th">Quantity</th>
-              <th className="manpower-th">Place</th>
-            </tr>
-            <tr>
-              <td className="manpower-td">Pratik Karanjit </td>
-              <td className="manpower-td">Manage overall event.</td>
-              <td className="manpower-td">9837123122</td>
-              <td className="manpower-td">Outside main gate</td>
-            </tr>
-            <tr>
-              <td className="manpower-td">Ram Prasad </td>
-              <td className="manpower-td">
-                Manage incoming audience and traffic.{" "}
-              </td>
-              <td className="manpower-td">9837123122</td>
-              <td className="manpower-td">Outside main gate</td>
-            </tr>
-          </table>
+          {branding ? (
+            <table className="branding-table">
+              <thead>
+                <tr className="branding-tr">
+                  <th className="branding-heading" colSpan="4">
+                    Branding
+                  </th>
+                </tr>
+                <tr>
+                  <th className="branding-th">Category</th>
+                  <th className="branding-th">Asset</th>
+                  <th className="branding-th">Quantity</th>
+                  <th className="branding-th">Place</th>
+                </tr>
+              </thead>
+              <tbody>
+                {branding.map((item, index) =>
+                  item.asset.map((asset, i) => (
+                    <tr key={`${index}-${i}`}>
+                      {i === 0 && (
+                        <td rowSpan={item.asset.length} className="branding-td">
+                          {item.category}
+                        </td>
+                      )}
+                      <td className="branding-td">{asset}</td>
+                      <td className="branding-td">{item.quantity[i]}</td>
+                      <td className="branding-td">{item.placement[i]}</td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          ) : (
+            <p>No branding data available</p>
+          )}
         </div>
 
         <br />

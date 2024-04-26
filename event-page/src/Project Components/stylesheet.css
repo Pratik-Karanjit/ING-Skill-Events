@@ -82,6 +82,7 @@ body {
 .header-item img {
   height: 3.2rem;
   margin-top: -13px;
+  margin-left: 4rem;
 }
 
 .contact-btn {
@@ -93,7 +94,7 @@ body {
   cursor: pointer;
   border-radius: 2px;
   transition: 0.3s;
-  margin-top: -5px;
+  margin-top: -12px;
   color: black;
 }
 
@@ -109,6 +110,8 @@ body {
 .container2 {
   width: 100%;
   margin: 5rem 0rem;
+  display: flex;
+  justify-content: center;
 }
 
 .first-section {
@@ -205,11 +208,10 @@ body {
 }
 
 .color-div-section {
-  width: 100%;
+  width: 80%;
   margin-top: 10rem;
   display: flex;
   gap: 8rem 3rem;
-  justify-content: center;
   flex-wrap: wrap;
 }
 
@@ -529,7 +531,6 @@ button {
   display: flex;
   flex-direction: column;
   padding-top: 25rem;
-  padding-left: 8rem;
   padding-right: 8rem;
   gap: 20px;
   margin: 5rem 5rem;
@@ -575,7 +576,7 @@ h1 {
   align-items: center;
   flex-direction: row;
   width: 100%;
-  padding: 5rem 3rem;
+  padding: 5rem 6rem;
   gap: 8rem;
 }
 
@@ -591,19 +592,23 @@ h1 {
   width: 100%;
 }
 
-.manpower-table {
+.manpower-table,
+.branding-table {
   width: 100%;
 }
 
 .manpower-tr,
-.resource-tr {
+.resource-tr,
+.branding-tr {
   height: 3rem;
 }
 
 .manpower-th,
 .manpower-td,
 .resource-th,
-.resource-td {
+.resource-td,
+.branding-th,
+.branding-td {
   padding: 8px;
   font-family: "Poppins";
   text-align: left;
@@ -613,12 +618,14 @@ h1 {
 }
 
 .resource-th,
-.manpower-th {
+.manpower-th,
+.branding-th {
   background-color: #f9fafb;
 }
 
 .manpower-heading,
-.resource-heading {
+.resource-heading,
+.branding-heading {
   font-family: "Poppins";
   font-size: 20px;
   text-align: left;
@@ -626,7 +633,7 @@ h1 {
 }
 
 .branding-container {
-  padding: 3rem 3rem;
+  padding: 3rem 6rem;
 }
 
 .detail-page-svg {

@@ -5,6 +5,7 @@ import {
   createManpower,
   createResource,
   getAllEvents,
+  getBrandingById,
   getEventById,
   getManpowerById,
   getResourceById,
@@ -20,6 +21,7 @@ entryRouter.post("/events/create", upload.single("img"), createEvent);
 entryRouter.post("/events/createManpower", createManpower);
 entryRouter.route("/getManpower/:eventId").get(getManpowerById);
 entryRouter.route("/getResource/:eventId").get(getResourceById);
+entryRouter.route("/getBranding/:eventId").get(getBrandingById);
 
 entryRouter.post("/events/createResource", createResource);
 entryRouter.post("/events/createBranding", createBranding);
