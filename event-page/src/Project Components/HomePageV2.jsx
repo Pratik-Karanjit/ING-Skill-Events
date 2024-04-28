@@ -89,19 +89,16 @@ const HomePageV2 = () => {
                 <p className="title-p">{post.title}</p>
                 <p className="college-p">{post.college}</p>
                 <div className="direction-buttons">
-                  {post.tag.map((tagString, idx) => {
-                    const tags = tagString.split(",").map((tag) => tag.trim());
-                    return tags.map((tag, index) => (
-                      <button
-                        key={idx + index} // Use a unique key for each button
-                        style={{ backgroundColor: getButtonColors([tag])[0] }}
-                      >
-                        {tag}
-                      </button>
-                    ));
-                  })}
+                  {post?.tag.split(",").map((tag, index) => (
+                    <button
+                      key={index}
+                      className="tag-button"
+                      style={{ backgroundColor: getButtonColors([tag])[0] }}
+                    >
+                      {tag.trim()}
+                    </button>
+                  ))}
                 </div>
-
                 <p className="event-description">
                   {expandBody
                     ? post.description

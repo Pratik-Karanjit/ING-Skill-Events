@@ -52,8 +52,10 @@ const AdminPanel = () => {
       formData.append("end_date", info.end_date);
       formData.append("status", info.status);
       formData.append("budget", info.budget);
-      formData.append("tag", JSON.stringify(info.tag));
       formData.append("eventId", info.eventId);
+      const tagsToSend = selectedTags.map((tag) => tag.value);
+      formData.append("tag", tagsToSend);
+
       // Log the FormData object before sending
       for (let pair of formData.entries()) {
         console.log(pair[0] + ": " + pair[1]);

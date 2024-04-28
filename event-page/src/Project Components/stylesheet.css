@@ -418,8 +418,9 @@ body {
 .google-keep {
   cursor: pointer;
   position: fixed;
-  right: 2.5rem;
+  right: 1rem;
   top: 6rem;
+  z-index: 10;
 }
 
 .input-form-container {
@@ -672,4 +673,14 @@ h1 {
 
 .event-detail-tag {
   margin-right: 5px;
+}
+
+.right-bar {
+  height: 100vh;
+  width: 5rem;
+  position: fixed;
+  right: 0;
+  background-color: #f6f8fc;
+  z-index: 8;
+  margin-top: 5rem;
 }

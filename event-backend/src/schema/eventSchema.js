@@ -100,13 +100,17 @@ export let eventSchema = Schema({
   // },
 
   tag: {
-    type: [String],
+    type: String,
     trim: true,
-    enum: {
-      values: ["Center", "East", "West", "North", "South"],
-      message: (notEnum) => {
-        return `${notEnum.value} is not a valid tag`;
-      },
-    },
   },
+  // tag: {
+  //   type: [String],
+  //   trim: true,
+  //   enum: {
+  //     values: ["Center", "East", "West", "North", "South"],
+  //     message: (notEnum) => {
+  //       return `${notEnum.value} is not a valid tag`;
+  //     },
+  //   },
+  // },
 });

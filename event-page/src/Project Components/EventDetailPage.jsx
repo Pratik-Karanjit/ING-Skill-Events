@@ -40,7 +40,7 @@ function EventDetailPage() {
         eventData.result.end_date
       ).toLocaleDateString("en-US");
       setEvent(eventData);
-      // console.log("Fetched events data:", eventData);
+      console.log("Fetched events data:", eventData);
     } catch (error) {
       console.error("Error fetching events details:", error);
     }
@@ -145,6 +145,7 @@ function EventDetailPage() {
               alt="image"
             /> */}
       <NavBar />
+      <div className="right-bar"></div>
 
       <div className="event-container">
         {event ? (
@@ -187,22 +188,15 @@ function EventDetailPage() {
                       <b>TAG</b>
                     </td>
                     <td>
-                      {event.result.tag.map((tagString, idx) => {
-                        const tags = tagString
-                          .split(",")
-                          .map((tag) => tag.trim());
-                        return tags.map((tag, index) => (
-                          <button
-                            key={idx + index}
-                            className="event-detail-tag"
-                            style={{
-                              backgroundColor: getButtonColors([tag])[0],
-                            }}
-                          >
-                            {tag}
-                          </button>
-                        ));
-                      })}
+                      {event?.result?.tag.split(",").map((tag, index) => (
+                        <button
+                          key={index}
+                          className="event-detail-tag"
+                          style={{ backgroundColor: getButtonColors([tag])[0] }}
+                        >
+                          {tag.trim()}
+                        </button>
+                      ))}
                     </td>
                   </tr>
                   <tr>
