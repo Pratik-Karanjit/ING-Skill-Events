@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import Select from "react-select";
+import NavBar from "./NavBar";
+import Footer from "./Footer";
 
 const AdminPanel = () => {
   const navigate = useNavigate();
@@ -86,184 +88,188 @@ const AdminPanel = () => {
   });
 
   return (
-    <div className="create-section">
-      <div className="form-container">
-        <h1>Create a New Event</h1>
-        <Formik
-          initialValues={initialValues}
-          onSubmit={onSubmit}
-          validationSchema={validationSchema}
-        >
-          {({ setFieldValue }) => (
-            <Form>
-              <div className="form-group">
-                <label htmlFor="title">Title:</label>
-                <Field type="text" name="title" id="title" />
-                <ErrorMessage
-                  name="title"
-                  component="div"
-                  className="error-message"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="owner">Owner:</label>
-                <Field type="text" name="owner" id="owner" />
-                <ErrorMessage
-                  name="owner"
-                  component="div"
-                  className="error-message"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="scope">Scope:</label>
-                <Field type="text" name="scope" id="scope" />
-                <ErrorMessage
-                  name="scope"
-                  component="div"
-                  className="error-message"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="description">Description:</label>
-                <Field type="text" name="description" id="description" />
-                <ErrorMessage
-                  name="description"
-                  component="div"
-                  className="error-message"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="college">College:</label>
-                <Field type="text" name="college" id="college" />
-                <ErrorMessage
-                  name="college"
-                  component="div"
-                  className="error-message"
-                />
-              </div>
+    <>
+      <NavBar />
+      <div className="create-section">
+        <div className="form-container">
+          <h1>Create a New Event</h1>
+          <Formik
+            initialValues={initialValues}
+            onSubmit={onSubmit}
+            validationSchema={validationSchema}
+          >
+            {({ setFieldValue }) => (
+              <Form>
+                <div className="form-group">
+                  <label htmlFor="title">Title:</label>
+                  <Field type="text" name="title" id="title" />
+                  <ErrorMessage
+                    name="title"
+                    component="div"
+                    className="error-message"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="owner">Owner:</label>
+                  <Field type="text" name="owner" id="owner" />
+                  <ErrorMessage
+                    name="owner"
+                    component="div"
+                    className="error-message"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="scope">Scope:</label>
+                  <Field type="text" name="scope" id="scope" />
+                  <ErrorMessage
+                    name="scope"
+                    component="div"
+                    className="error-message"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="description">Description:</label>
+                  <Field type="text" name="description" id="description" />
+                  <ErrorMessage
+                    name="description"
+                    component="div"
+                    className="error-message"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="college">College:</label>
+                  <Field type="text" name="college" id="college" />
+                  <ErrorMessage
+                    name="college"
+                    component="div"
+                    className="error-message"
+                  />
+                </div>
 
-              <div className="form-group">
-                <label htmlFor="start_date">Start Date:</label>
-                <Field type="date" name="start_date" id="start_date" />
-                <ErrorMessage
-                  name="start_date"
-                  component="div"
-                  className="error-message"
-                />
-              </div>
+                <div className="form-group">
+                  <label htmlFor="start_date">Start Date:</label>
+                  <Field type="date" name="start_date" id="start_date" />
+                  <ErrorMessage
+                    name="start_date"
+                    component="div"
+                    className="error-message"
+                  />
+                </div>
 
-              <div className="form-group">
-                <label htmlFor="end_date">End Date:</label>
-                <Field type="date" name="end_date" id="end_date" />
-                <ErrorMessage
-                  name="end_date"
-                  component="div"
-                  className="error-message"
-                />
-              </div>
+                <div className="form-group">
+                  <label htmlFor="end_date">End Date:</label>
+                  <Field type="date" name="end_date" id="end_date" />
+                  <ErrorMessage
+                    name="end_date"
+                    component="div"
+                    className="error-message"
+                  />
+                </div>
 
-              <div className="form-group">
-                <label htmlFor="status">Status:</label>
-                <Field as="select" name="status" id="status">
-                  <option value="" disabled>
-                    Select Status
-                  </option>
-                  <option value="active">Active</option>
-                  <option value="inactive">Inactive</option>
-                </Field>
-                <ErrorMessage
-                  name="status"
-                  component="div"
-                  className="error-message"
-                />
-              </div>
+                <div className="form-group">
+                  <label htmlFor="status">Status:</label>
+                  <Field as="select" name="status" id="status">
+                    <option value="" disabled>
+                      Select Status
+                    </option>
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                  </Field>
+                  <ErrorMessage
+                    name="status"
+                    component="div"
+                    className="error-message"
+                  />
+                </div>
 
-              <div className="form-group">
-                <label htmlFor="budget">Budget:</label>
-                <Field type="number" name="budget" id="budget" />
-                <ErrorMessage
-                  name="budget"
-                  component="div"
-                  className="error-message"
-                />
-              </div>
+                <div className="form-group">
+                  <label htmlFor="budget">Budget:</label>
+                  <Field type="number" name="budget" id="budget" />
+                  <ErrorMessage
+                    name="budget"
+                    component="div"
+                    className="error-message"
+                  />
+                </div>
 
-              <div className="form-group">
-                <label htmlFor="tag">Tag:</label>
+                <div className="form-group">
+                  <label htmlFor="tag">Tag:</label>
 
-                <Select
-                  options={tagOption}
-                  value={selectedTags}
-                  onChange={(selectedTag) => {
-                    setSelectedTags(selectedTag);
-                    setFieldValue(
-                      "tag",
-                      selectedTag.map((tag) => tag.value)
-                    );
+                  <Select
+                    options={tagOption}
+                    value={selectedTags}
+                    onChange={(selectedTag) => {
+                      setSelectedTags(selectedTag);
+                      setFieldValue(
+                        "tag",
+                        selectedTag.map((tag) => tag.value)
+                      );
+                    }}
+                    isMulti={true}
+                    placeholder="Select tag"
+                  />
+                  <ErrorMessage
+                    name="tag"
+                    component="div"
+                    className="error-message"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="eventId">Event Id:</label>
+                  <Field type="text" name="eventId" id="eventId" />
+                  <ErrorMessage
+                    name="eventId"
+                    component="div"
+                    className="error-message"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="eventImage">Event Image:</label>
+                  <Field
+                    type="file"
+                    name="eventImage"
+                    id="eventImage"
+                    onChange={handleFileChange}
+                  />
+                  <ErrorMessage
+                    name="eventImage"
+                    component="div"
+                    className="error-message"
+                  />
+                </div>
+                <button type="submit">Create Event</button>
+                <button
+                  style={{ marginTop: "20px" }}
+                  onClick={(e) => {
+                    navigate("/createManpower");
                   }}
-                  isMulti={true}
-                  placeholder="Select tag"
-                />
-                <ErrorMessage
-                  name="tag"
-                  component="div"
-                  className="error-message"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="eventId">Event Id:</label>
-                <Field type="text" name="eventId" id="eventId" />
-                <ErrorMessage
-                  name="eventId"
-                  component="div"
-                  className="error-message"
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="eventImage">Event Image:</label>
-                <Field
-                  type="file"
-                  name="eventImage"
-                  id="eventImage"
-                  onChange={handleFileChange}
-                />
-                <ErrorMessage
-                  name="eventImage"
-                  component="div"
-                  className="error-message"
-                />
-              </div>
-              <button type="submit">Create Event</button>
-              <button
-                style={{ marginTop: "20px" }}
-                onClick={(e) => {
-                  navigate("/createManpower");
-                }}
-              >
-                Create Manpower
-              </button>
-              <button
-                style={{ marginTop: "20px" }}
-                onClick={(e) => {
-                  navigate("/createResource");
-                }}
-              >
-                Create Resource
-              </button>
-              <button
-                style={{ marginTop: "20px" }}
-                onClick={(e) => {
-                  navigate("/createBranding");
-                }}
-              >
-                Create Branding
-              </button>
-            </Form>
-          )}
-        </Formik>
+                >
+                  Create Manpower
+                </button>
+                <button
+                  style={{ marginTop: "20px" }}
+                  onClick={(e) => {
+                    navigate("/createResource");
+                  }}
+                >
+                  Create Resource
+                </button>
+                <button
+                  style={{ marginTop: "20px" }}
+                  onClick={(e) => {
+                    navigate("/createBranding");
+                  }}
+                >
+                  Create Branding
+                </button>
+              </Form>
+            )}
+          </Formik>
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 

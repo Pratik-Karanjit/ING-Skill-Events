@@ -31,7 +31,6 @@ const MyRouter = () => {
         <Route path="/createManpower" element={<CreateManpower />} />
         <Route path="/createResource" element={<CreateResource />} />
         <Route path="/createBranding" element={<CreateBranding />} />
-        <Route path="/abc" element={<Abc />} />
 
         <Route path="*" element={<ErrorPage />} />
       </Route>

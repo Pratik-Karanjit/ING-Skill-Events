@@ -38,10 +38,11 @@ body {
 
 .header-item {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   padding: 2rem 3rem;
   gap: 70px;
+  position: relative;
 }
 
 .navColor {
@@ -57,6 +58,8 @@ body {
 
 .navColor .header-item li a {
   color: white;
+  position: absolute;
+  left: 4rem;
 }
 
 .header-item li {
@@ -71,6 +74,8 @@ body {
 .header-item li a {
   text-decoration: none;
   color: rgb(20, 10, 10);
+  position: absolute;
+  left: 4rem;
 }
 
 .header-item li i {
@@ -82,7 +87,6 @@ body {
 .header-item img {
   height: 3.2rem;
   margin-top: -13px;
-  margin-left: 4rem;
 }
 
 .contact-btn {
@@ -413,8 +417,9 @@ body {
   color: white;
   letter-spacing: 1px;
   cursor: pointer;
+  position: relative;
+  top: 5rem;
 }
-
 .google-keep {
   cursor: pointer;
   position: fixed;
@@ -424,7 +429,7 @@ body {
 }
 
 .input-form-container {
-  position: fixed;
+  position: fixed !important;
   top: 0;
   right: 0;
   width: 30%;
@@ -433,13 +438,22 @@ body {
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 10;
+  transform: translateX(19%);
 }
 
 .input-form-container input[type="text"] {
-  width: 100%;
+  width: 82%;
   padding: 10px;
   margin-bottom: 10px;
   border: none;
+  position: relative;
+  top: 5rem;
+}
+
+.input-form-h1 {
+  font-family: "Poppins";
+  position: relative;
+  top: 5rem;
 }
 
 .notes-div {
@@ -451,11 +465,12 @@ body {
 .notes-wrapper {
   display: flex;
   flex-wrap: wrap;
+  margin-top: 5rem;
 }
 
 .note {
   min-width: 50%;
-  max-width: 100%;
+  max-width: 82%;
   margin: 5px;
   padding: 10px;
   background-color: #f9fff7;
@@ -480,7 +495,8 @@ body {
 .form-container {
   background-color: #ffffff;
   width: 40%;
-  padding: 2.5rem;
+  padding: 4.5rem 2.5rem !important;
+
   border-radius: 0.375rem;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
@@ -672,7 +688,7 @@ h1 {
 }
 
 .event-detail-tag {
-  margin-right: 5px;
+  margin-right: 1rem;
 }
 
 .right-bar {
@@ -682,5 +698,86 @@ h1 {
   right: 0;
   background-color: #f6f8fc;
   z-index: 8;
-  margin-top: 5rem;
+}
+
+.content-container .event-container {
+  position: relative;
+}
+
+.input-form-active .content-container {
+  transform: translateX(-10%); /* Adjust the value as per your requirement */
+  transition: transform 0.3s ease; /* Add transition for smooth animation */
+}
+
+@media (max-width: 450px) {
+  .color-div-section {
+    width: 100%;
+    margin-top: 4rem;
+    gap: 4rem 0;
+  }
+  .color-div-card {
+    padding: 4px 15px;
+  }
+  .bottom50 {
+    flex-direction: column;
+    padding: 14px 13px;
+    display: flex;
+    gap: 7px;
+  }
+  .bottom50 button {
+    padding: 0px 10px;
+  }
+  .event-details {
+    margin: 4rem 1rem;
+    padding-right: 0;
+  }
+  .event-detail-tag-div {
+    display: flex;
+    flex-direction: row;
+  }
+  .manpower-resource-container {
+    display: flex;
+    width: 60%;
+    flex-direction: column;
+    padding: 0;
+    gap: 4rem;
+  }
+  .branding-container {
+    padding: 4rem 1rem;
+  }
+  .right-bar {
+    display: none;
+  }
+  .footer h1 {
+    font-size: 24px;
+  }
+  .form-container {
+    padding-top: 6rem !important;
+    padding-bottom: 3rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    width: 100%;
+  }
+}
+
+/* 404 error page */
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.error-content {
+  text-align: center;
+}
+
+.error-heading {
+  font-size: 3rem;
+  color: #f44336; /* Red color */
+}
+
+.error-message {
+  font-size: 1.5rem;
+  color: #333; /* Dark grey color */
 }

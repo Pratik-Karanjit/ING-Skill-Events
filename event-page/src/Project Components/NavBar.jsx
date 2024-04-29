@@ -25,12 +25,12 @@ const NavBar = () => {
             alt="Kavya School"
           />
         </a>
-
+        {/* 
         <a href="/contact">
           <button className="contact-btn">
             <b>CONTACT</b>
           </button>
-        </a>
+        </a> */}
       </div>
     </div>
   );

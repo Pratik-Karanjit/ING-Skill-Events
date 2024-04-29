@@ -47,6 +47,15 @@ function EventDetailPage() {
   };
 
   useEffect(() => {
+    const savedNotes = JSON.parse(localStorage.getItem("notes")) || [];
+    setNotes(savedNotes);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("notes", JSON.stringify(notes));
+  }, [notes]);
+
+  useEffect(() => {
     fetchData();
   }, [eventId]);
 
@@ -118,8 +127,10 @@ function EventDetailPage() {
 
   const toggleInputForm = () => {
     setShowInputForm(!showInputForm);
-  };
 
+    // Toggle body displacement class
+    document.body.classList.toggle("input-form-active");
+  };
   const handleChange = (e) => {
     setNewNote(e.target.value);
   };
@@ -133,88 +144,26 @@ function EventDetailPage() {
 
       // Dispatch the action with the updated notes
       dispatch(setNote({ notes: updatedNotes }));
-      localStorage.setItem("notes", updatedNotes);
+      // localStorage.setItem("notes", updatedNotes);
     }
   };
 
   return (
     <>
-      {/* <img
-              className="event-detail-img"
-              src={`http://localhost:8000/${event.result.eventImage}`}
-              alt="image"
-            /> */}
       <NavBar />
-      <div className="right-bar"></div>
+      <div className="right-bar">
+        <img
+          onClick={toggleInputForm}
+          className="google-keep"
+          src={googleKeep}
+          alt="google-keep"
+        />
+      </div>
 
-      <div className="event-container">
-        {event ? (
-          <>
-            <img
-              className="event-detail-img"
-              src={`http://localhost:8000/${event.result.eventImage}`}
-              alt="image"
-            />
-            <div className="event-details">
-              <h1>{event.result?.title}</h1>
-              <table className="event-table">
-                <tbody>
-                  <tr>
-                    <td className="table-header">
-                      <b>SCOPE</b>
-                    </td>
-                    <td>{event.result?.scope}</td>
-                  </tr>
-                  <tr>
-                    <td className="table-header">
-                      <b>START DATE</b>
-                    </td>
-                    <td>{event.result?.start_date}</td>
-                  </tr>
-                  <tr>
-                    <td className="table-header">
-                      <b>END DATE</b>
-                    </td>
-                    <td>{event.result?.end_date}</td>
-                  </tr>
-                  <tr>
-                    <td className="table-header">
-                      <b>OWNER</b>
-                    </td>
-                    <td>{event.result?.owner}</td>
-                  </tr>
-                  <tr>
-                    <td className="table-header">
-                      <b>TAG</b>
-                    </td>
-                    <td>
-                      {event?.result?.tag.split(",").map((tag, index) => (
-                        <button
-                          key={index}
-                          className="event-detail-tag"
-                          style={{ backgroundColor: getButtonColors([tag])[0] }}
-                        >
-                          {tag.trim()}
-                        </button>
-                      ))}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="table-header">
-                      <b>DESCRIPTION</b>
-                    </td>
-                    <td>{event.result.description}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </>
-        ) : (
-          <p>Loading event details...</p>
-        )}
-
-        {showInputForm && (
-          <div className="input-form-container">
+      {showInputForm && (
+        <div className="input-form-container">
+          <div className="input-field-wrapper">
+            <h1 className="input-form-h1">Add your notes</h1>
             <input
               type="text"
               placeholder="Enter your note"
@@ -240,112 +189,185 @@ function EventDetailPage() {
               </div>
             )}
           </div>
-        )}
+        </div>
+      )}
+      <div className="content-container">
+        <div className="event-container">
+          {event ? (
+            <>
+              <img
+                className="event-detail-img"
+                src={`http://localhost:8000/${event.result.eventImage}`}
+                alt="image"
+              />
+              <div className="event-details">
+                <h1>{event.result?.title}</h1>
+                <table className="event-table">
+                  <tbody>
+                    <tr>
+                      <td className="table-header">
+                        <b>SCOPE</b>
+                      </td>
+                      <td>{event.result?.scope}</td>
+                    </tr>
+                    <tr>
+                      <td className="table-header">
+                        <b>START DATE</b>
+                      </td>
+                      <td>{event.result?.start_date}</td>
+                    </tr>
+                    <tr>
+                      <td className="table-header">
+                        <b>END DATE</b>
+                      </td>
+                      <td>{event.result?.end_date}</td>
+                    </tr>
+                    <tr>
+                      <td className="table-header">
+                        <b>OWNER</b>
+                      </td>
+                      <td>{event.result?.owner}</td>
+                    </tr>
+                    <tr>
+                      <td className="table-header">
+                        <b>TAG</b>
+                      </td>
+                      <td className="event-detail-tag-div">
+                        {event?.result?.tag.split(",").map((tag, index) => (
+                          <button
+                            key={index}
+                            className="event-detail-tag"
+                            style={{
+                              backgroundColor: getButtonColors([tag])[0],
+                            }}
+                          >
+                            {tag.trim()}
+                          </button>
+                        ))}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="table-header">
+                        <b>DESCRIPTION</b>
+                      </td>
+                      <td>{event.result.description}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </>
+          ) : (
+            <p>Loading event details...</p>
+          )}
 
-        <div className="manpower-resource-container">
-          {manpower ? (
-            <div className="manpower-container">
-              <table className="manpower-table">
+          <div className="manpower-resource-container">
+            {manpower ? (
+              <div className="manpower-container">
+                <table className="manpower-table">
+                  <thead>
+                    <tr className="manpower-tr">
+                      <th className="manpower-heading" colSpan="3">
+                        Manpower
+                      </th>
+                    </tr>
+                    <tr>
+                      <th className="manpower-th">Name</th>
+                      <th className="manpower-th">Responsibility</th>
+                      <th className="manpower-th">Mobile Number</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {manpower.map((person, index) => (
+                      <tr key={index}>
+                        <td className="manpower-td">{person.name}</td>
+                        <td className="manpower-td">{person.responsibility}</td>
+                        <td className="manpower-td">{person.mobile_number}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <p>No manpower data available</p>
+            )}
+
+            {resource ? (
+              <div className="resource-container">
+                <table className="resource-table">
+                  <thead>
+                    <tr className="resource-tr">
+                      <th className="resource-heading" colSpan="2">
+                        Resource
+                      </th>
+                    </tr>
+                    <tr>
+                      <th className="resource-th">Item</th>
+                      <th className="resource-th">Quantity</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {resource.map((resource, index) => (
+                      <tr key={index}>
+                        <td className="manpower-td">{resource.item}</td>
+                        <td className="manpower-td">{resource.quantity}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <p>No resource data available</p>
+            )}
+          </div>
+          <div className="branding-container">
+            {branding ? (
+              <table className="branding-table">
                 <thead>
-                  <tr className="manpower-tr">
-                    <th className="manpower-heading" colSpan="3">
-                      Manpower
+                  <tr className="branding-tr">
+                    <th className="branding-heading" colSpan="4">
+                      Branding
                     </th>
                   </tr>
                   <tr>
-                    <th className="manpower-th">Name</th>
-                    <th className="manpower-th">Responsibility</th>
-                    <th className="manpower-th">Mobile Number</th>
+                    <th className="branding-th">Category</th>
+                    <th className="branding-th">Asset</th>
+                    <th className="branding-th">Quantity</th>
+                    <th className="branding-th">Place</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {manpower.map((person, index) => (
-                    <tr key={index}>
-                      <td className="manpower-td">{person.name}</td>
-                      <td className="manpower-td">{person.responsibility}</td>
-                      <td className="manpower-td">{person.mobile_number}</td>
-                    </tr>
-                  ))}
+                  {branding.map((item, index) =>
+                    item.asset.map((asset, i) => (
+                      <tr key={`${index}-${i}`}>
+                        {i === 0 && (
+                          <td
+                            rowSpan={item.asset.length}
+                            className="branding-td"
+                          >
+                            {item.category}
+                          </td>
+                        )}
+                        <td className="branding-td">{asset}</td>
+                        <td className="branding-td">{item.quantity[i]}</td>
+                        <td className="branding-td">{item.placement[i]}</td>
+                      </tr>
+                    ))
+                  )}
                 </tbody>
               </table>
-            </div>
-          ) : (
-            <p>No manpower data available</p>
-          )}
+            ) : (
+              <p>No branding data available</p>
+            )}
+          </div>
 
-          {resource ? (
-            <div className="resource-container">
-              <table className="resource-table">
-                <thead>
-                  <tr className="resource-tr">
-                    <th className="resource-heading" colSpan="2">
-                      Resource
-                    </th>
-                  </tr>
-                  <tr>
-                    <th className="resource-th">Item</th>
-                    <th className="resource-th">Quantity</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {resource.map((resource, index) => (
-                    <tr key={index}>
-                      <td className="manpower-td">{resource.item}</td>
-                      <td className="manpower-td">{resource.quantity}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          ) : (
-            <p>No resource data available</p>
-          )}
-        </div>
-        <div className="branding-container">
-          {branding ? (
-            <table className="branding-table">
-              <thead>
-                <tr className="branding-tr">
-                  <th className="branding-heading" colSpan="4">
-                    Branding
-                  </th>
-                </tr>
-                <tr>
-                  <th className="branding-th">Category</th>
-                  <th className="branding-th">Asset</th>
-                  <th className="branding-th">Quantity</th>
-                  <th className="branding-th">Place</th>
-                </tr>
-              </thead>
-              <tbody>
-                {branding.map((item, index) =>
-                  item.asset.map((asset, i) => (
-                    <tr key={`${index}-${i}`}>
-                      {i === 0 && (
-                        <td rowSpan={item.asset.length} className="branding-td">
-                          {item.category}
-                        </td>
-                      )}
-                      <td className="branding-td">{asset}</td>
-                      <td className="branding-td">{item.quantity[i]}</td>
-                      <td className="branding-td">{item.placement[i]}</td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          ) : (
-            <p>No branding data available</p>
-          )}
-        </div>
-
-        <br />
-        <img
+          <br />
+          {/* <img
           onClick={toggleInputForm}
           className="google-keep"
           src={googleKeep}
           alt="google-keep"
-        />
+        /> */}
+        </div>
       </div>
       <Footer />
     </>

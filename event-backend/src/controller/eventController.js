@@ -94,13 +94,14 @@ export let createEvent = expressAsyncHandler(async (req, res, next) => {
 
 export let createManpower = expressAsyncHandler(async (req, res, next) => {
   console.log(req.body);
-  const { name, responsibility, mobile_number } = req.body;
+  const { name, responsibility, mobile_number, eventId } = req.body;
 
   try {
     const newManpower = await Manpower.create({
       name,
       responsibility,
       mobile_number,
+      eventId,
     });
     successResponse(
       res,
@@ -157,7 +158,7 @@ export const getResourceById = expressAsyncHandler(async (req, res) => {
 
 export const getBrandingById = expressAsyncHandler(async (req, res) => {
   const { eventId } = req.params;
-  console.log("branding params", eventId);
+  // console.log("branding params", eventId);
   try {
     const branding = await Branding.find({ eventId: eventId });
 
@@ -197,7 +198,7 @@ export const getBrandingById = expressAsyncHandler(async (req, res) => {
 
 export let createBranding = expressAsyncHandler(async (req, res, next) => {
   console.log(req.body);
-  const { category, asset, quantity, placement } = req.body;
+  const { category, asset, quantity, placement, eventId } = req.body;
 
   try {
     const newBranding = await Branding.create({
@@ -205,6 +206,7 @@ export let createBranding = expressAsyncHandler(async (req, res, next) => {
       asset,
       quantity,
       placement,
+      eventId,
     });
     successResponse(
       res,
@@ -219,12 +221,13 @@ export let createBranding = expressAsyncHandler(async (req, res, next) => {
 
 export let createResource = expressAsyncHandler(async (req, res, next) => {
   console.log(req.body);
-  const { item, quantity } = req.body;
+  const { item, quantity, eventId } = req.body;
 
   try {
     const newResource = await Resource.create({
       item,
       quantity,
+      eventId,
     });
     successResponse(
       res,

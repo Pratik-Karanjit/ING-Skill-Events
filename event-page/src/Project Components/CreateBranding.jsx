@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import Select from "react-select";
 import * as yup from "yup";
+import NavBar from "./NavBar";
+import Footer from "./Footer";
 
 const CreateBranding = () => {
   const navigate = useNavigate();
@@ -17,6 +19,7 @@ const CreateBranding = () => {
     asset: "",
     quantity: "",
     placement: "",
+    eventId: "",
   };
 
   const categoryOption = [
@@ -63,102 +66,113 @@ const CreateBranding = () => {
   });
 
   return (
-    <div className="create-section">
-      <div className="form-container">
-        <h1>Create a New Branding</h1>
-        <Formik
-          initialValues={initialValues}
-          onSubmit={onSubmit}
-          validationSchema={validationSchema}
-        >
-          {({ values, setFieldValue }) => (
-            <Form>
-              <div className="form-group">
-                <label htmlFor="quantities">Category:</label>
+    <>
+      <NavBar />
+      <div className="create-section">
+        <div className="form-container">
+          <h1>Create a New Branding</h1>
+          <Formik
+            initialValues={initialValues}
+            onSubmit={onSubmit}
+            validationSchema={validationSchema}
+          >
+            {({ values, setFieldValue }) => (
+              <Form>
+                <div className="form-group">
+                  <label htmlFor="quantities">Category:</label>
 
-                <Select
-                  options={categoryOption}
-                  value={selectedCategory}
-                  onChange={(selectedOption) => {
-                    setSelectedCategory(selectedOption);
-                    setFieldValue("category", selectedOption.value);
-                  }}
-                  placeholder="Select category"
-                />
-                <ErrorMessage
-                  name="category"
-                  component="div"
-                  className="error-message"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="quantities">Asset:</label>
+                  <Select
+                    options={categoryOption}
+                    value={selectedCategory}
+                    onChange={(selectedOption) => {
+                      setSelectedCategory(selectedOption);
+                      setFieldValue("category", selectedOption.value);
+                    }}
+                    placeholder="Select category"
+                  />
+                  <ErrorMessage
+                    name="category"
+                    component="div"
+                    className="error-message"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="quantities">Asset:</label>
 
-                <Select
-                  options={assetOption}
-                  value={selectedAssets}
-                  onChange={(selectedAsset) => {
-                    setSelectedAssets(selectedAsset);
-                    setFieldValue(
-                      "asset",
-                      selectedAsset.map((option) => option.value)
-                    );
-                  }}
-                  isMulti={true}
-                  placeholder="Select asset"
-                />
-                <ErrorMessage
-                  name="asset"
-                  component="div"
-                  className="error-message"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="quantities">Quantity:</label>
-                <Select
-                  options={quantityOptions}
-                  value={selectedOptions}
-                  onChange={(selectedOption) => {
-                    setSelectedOptions(selectedOption);
-                    setFieldValue(
-                      "quantity",
-                      selectedOption.map((option) => option.value)
-                    );
-                  }}
-                  isMulti={true}
-                  placeholder="Select quantities"
-                />
-                <ErrorMessage
-                  name="quantities"
-                  component="div"
-                  className="error-message"
-                />
-              </div>
+                  <Select
+                    options={assetOption}
+                    value={selectedAssets}
+                    onChange={(selectedAsset) => {
+                      setSelectedAssets(selectedAsset);
+                      setFieldValue(
+                        "asset",
+                        selectedAsset.map((option) => option.value)
+                      );
+                    }}
+                    isMulti={true}
+                    placeholder="Select asset"
+                  />
+                  <ErrorMessage
+                    name="asset"
+                    component="div"
+                    className="error-message"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="quantities">Quantity:</label>
+                  <Select
+                    options={quantityOptions}
+                    value={selectedOptions}
+                    onChange={(selectedOption) => {
+                      setSelectedOptions(selectedOption);
+                      setFieldValue(
+                        "quantity",
+                        selectedOption.map((option) => option.value)
+                      );
+                    }}
+                    isMulti={true}
+                    placeholder="Select quantities"
+                  />
+                  <ErrorMessage
+                    name="quantities"
+                    component="div"
+                    className="error-message"
+                  />
+                </div>
 
-              <div className="form-group">
-                <label htmlFor="quantities">Placement:</label>
+                <div className="form-group">
+                  <label htmlFor="quantities">Placement:</label>
 
-                <Select
-                  options={placementOption}
-                  value={selectedPlacements}
-                  onChange={(selectedPlacement) => {
-                    setSelectedPlacements(selectedPlacement);
-                    setFieldValue(
-                      "placement",
-                      selectedPlacement.map((option) => option.value)
-                    );
-                  }}
-                  isMulti={true}
-                  placeholder="Select placement"
-                />
-                <ErrorMessage
-                  name="placement"
-                  component="div"
-                  className="error-message"
-                />
-              </div>
+                  <Select
+                    options={placementOption}
+                    value={selectedPlacements}
+                    onChange={(selectedPlacement) => {
+                      setSelectedPlacements(selectedPlacement);
+                      setFieldValue(
+                        "placement",
+                        selectedPlacement.map((option) => option.value)
+                      );
+                    }}
+                    isMulti={true}
+                    placeholder="Select placement"
+                  />
+                  <ErrorMessage
+                    name="placement"
+                    component="div"
+                    className="error-message"
+                  />
+                </div>
 
-              {/* <div className="form-group">
+                <div className="form-group">
+                  <label htmlFor="eventId">Event Id:</label>
+                  <Field type="text" name="eventId" id="eventId" />
+                  <ErrorMessage
+                    name="eventId"
+                    component="div"
+                    className="error-message"
+                  />
+                </div>
+                {/* <div className="form-group">
                 <label htmlFor="placement">Placement:</label>
                 <Field type="text" name="placement" id="placement" />
                 <ErrorMessage
@@ -168,12 +182,14 @@ const CreateBranding = () => {
                 />
               </div> */}
 
-              <button type="submit">Create Branding</button>
-            </Form>
-          )}
-        </Formik>
+                <button type="submit">Create Branding</button>
+              </Form>
+            )}
+          </Formik>
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 
