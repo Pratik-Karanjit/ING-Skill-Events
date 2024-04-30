@@ -10,6 +10,7 @@ import CreateManpower from "./Project Components/CreateManpower.jsx";
 import CreateBranding from "./Project Components/CreateBranding.jsx";
 import CreateResource from "./Project Components/CreateResource.jsx";
 import Abc from "./Project Components/Abc.jsx";
+import Calendar from "./Project Components/Calendar.jsx";
 
 const MyRouter = () => {
   return (
@@ -26,6 +27,7 @@ const MyRouter = () => {
         {/* <Route index element={<HomePageV1 />} /> */}
         <Route index element={<HomePageV2 />} />
         <Route path="/events/:eventId" element={<EventDetailPage />} />
+        <Route path="/events/calendar/:eventId" element={<Calendar />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/adminPanel" element={<AdminPanel />} />
         <Route path="/createManpower" element={<CreateManpower />} />

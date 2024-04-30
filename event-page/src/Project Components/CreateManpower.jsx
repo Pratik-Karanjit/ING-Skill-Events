@@ -7,7 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import NavBar from "./NavBar";
-import Footer from "./Footer";
+import Footer from "./FooterHome";
+import FooterOtherPages from "./FooterOtherPages";
 
 const CreateManpower = () => {
   const navigate = useNavigate();
@@ -96,7 +97,7 @@ const CreateManpower = () => {
           </Formik>
         </div>
       </div>
-      <Footer />
+      <FooterOtherPages />
     </>
   );
 };

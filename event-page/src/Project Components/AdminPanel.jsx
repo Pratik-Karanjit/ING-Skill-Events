@@ -7,7 +7,8 @@ import * as yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import Select from "react-select";
 import NavBar from "./NavBar";
-import Footer from "./Footer";
+import Footer from "./FooterHome";
+import FooterOtherPages from "./FooterOtherPages";
 
 const AdminPanel = () => {
   const navigate = useNavigate();
@@ -268,7 +269,7 @@ const AdminPanel = () => {
           </Formik>
         </div>
       </div>
-      <Footer />
+      <FooterOtherPages />
     </>
   );
 };

@@ -3,7 +3,9 @@ import "./stylesheet.css";
 import axios from "axios";
 import NavBar from "./NavBar";
 import { useNavigate } from "react-router-dom";
-import Footer from "./Footer";
+import Footer from "./FooterHome";
+import ParticleComponent from "./particle";
+import ParticlesComponent from "./particle";
 
 const HomePageV2 = () => {
   const [expandBody, setExpandBody] = useState(false);
@@ -70,6 +72,8 @@ const HomePageV2 = () => {
   return (
     <div className="main-wrapper">
       <NavBar />
+      {/* <div className="content-wrapper"> */}
+      <ParticlesComponent id="particles" />
       <div className="container2 ">
         <div className="color-div-section">
           {posts.map((post, index) => (

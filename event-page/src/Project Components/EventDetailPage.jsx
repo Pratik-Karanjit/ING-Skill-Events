@@ -2,22 +2,23 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import googleKeep from "../Photos/google_keep.png";
+import googleCalendar from "../Photos/Calendar.png";
 import { useDispatch } from "react-redux";
 import { setNote } from "../features/noteSlice.js";
 import NavBar from "./NavBar.jsx";
-import Footer from "./Footer.jsx";
+import FooterOtherPages from "./FooterOtherPages.jsx";
 
 async function fetchEvents(eventId) {
   const response = await axios.get(
     `http://localhost:8000/entry/events/${eventId}`
   );
-  console.log("response data hereeee", response);
+  // console.log("response data hereeee", response);
   return response.data;
 }
 
 function EventDetailPage() {
   const { eventId } = useParams();
-  console.log("event id here", eventId);
+  // console.log("event id here", eventId);
   const [event, setEvent] = useState(null);
   const [manpower, setManpower] = useState(null);
   const [resource, setResource] = useState(null);
@@ -28,10 +29,21 @@ function EventDetailPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    const storedNotes = localStorage.getItem(`notes_${eventId}`);
+    if (storedNotes) {
+      setNotes(JSON.parse(storedNotes));
+    }
+  }, [eventId]);
+
+  // useEffect(() => {
+  //   localStorage.setItem("notes", JSON.stringify(notes));
+  // }, [notes]);
+
   const fetchData = async () => {
     try {
       const eventData = await fetchEvents(eventId);
-      // console.log("event data", eventData);
+      console.log("event data", eventData);
       // Format start_date and end_date here
       eventData.result.start_date = new Date(
         eventData.result.start_date
@@ -40,20 +52,11 @@ function EventDetailPage() {
         eventData.result.end_date
       ).toLocaleDateString("en-US");
       setEvent(eventData);
-      console.log("Fetched events data:", eventData);
+      // console.log("Fetched events data:", eventData);
     } catch (error) {
       console.error("Error fetching events details:", error);
     }
   };
-
-  useEffect(() => {
-    const savedNotes = JSON.parse(localStorage.getItem("notes")) || [];
-    setNotes(savedNotes);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("notes", JSON.stringify(notes));
-  }, [notes]);
 
   useEffect(() => {
     fetchData();
@@ -72,10 +75,6 @@ function EventDetailPage() {
     }
   };
 
-  useEffect(() => {
-    fetchManpower();
-  }, []);
-
   const fetchResource = async () => {
     try {
       const resourceResponse = await axios.get(
@@ -87,10 +86,6 @@ function EventDetailPage() {
       console.log("Resource error:", error);
     }
   };
-
-  useEffect(() => {
-    fetchResource();
-  }, []);
 
   const fetchBranding = async () => {
     try {
@@ -105,6 +100,10 @@ function EventDetailPage() {
   };
 
   useEffect(() => {
+    fetchResource();
+
+    fetchManpower();
+
     fetchBranding();
   }, []);
 
@@ -137,17 +136,20 @@ function EventDetailPage() {
 
   const handleSubmit = () => {
     if (newNote.trim() !== "") {
-      const updatedNotes = [...notes, newNote]; // Include the new note in the updated state
-      setNotes(updatedNotes); // Update the local state
-      setNewNote(""); // Clear the input field
-      console.log("note here", updatedNotes); // Log the updated notes
+      const updatedNotes = [...notes, newNote];
+      localStorage.setItem(`notes_${eventId}`, JSON.stringify(updatedNotes));
 
-      // Dispatch the action with the updated notes
-      dispatch(setNote({ notes: updatedNotes }));
-      // localStorage.setItem("notes", updatedNotes);
+      setNotes(updatedNotes);
+      setNewNote("");
+      console.log("note here", updatedNotes);
+      dispatch(setNote({ eventId, notes: updatedNotes }));
     }
   };
 
+  const handleCalendar = (eventId) => {
+    navigate(`/events/calendar/${eventId}`);
+    console.log("eventId from calendar", eventId);
+  };
   return (
     <>
       <NavBar />
@@ -157,6 +159,12 @@ function EventDetailPage() {
           className="google-keep"
           src={googleKeep}
           alt="google-keep"
+        />
+        <img
+          onClick={() => handleCalendar(event?.result?.eventId)}
+          className="google-calendar"
+          src={googleCalendar}
+          alt="google-calendar"
         />
       </div>
 
@@ -369,7 +377,7 @@ function EventDetailPage() {
         /> */}
         </div>
       </div>
-      <Footer />
+      <FooterOtherPages />
     </>
   );
 }

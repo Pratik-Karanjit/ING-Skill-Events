@@ -6,8 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import Footer from "./Footer";
+import Footer from "./FooterHome";
 import NavBar from "./NavBar";
+import FooterOtherPages from "./FooterOtherPages";
 
 const CreateResource = () => {
   const navigate = useNavigate();
@@ -85,7 +86,7 @@ const CreateResource = () => {
           </Formik>
         </div>
       </div>
-      <Footer />
+      <FooterOtherPages />
     </>
   );
 };

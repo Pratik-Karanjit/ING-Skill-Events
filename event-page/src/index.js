@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import MyRouter from "../src/MyRouter.jsx";
 import { Provider } from "react-redux";
 import { store } from "./app/store.js";
+import Calendar from "./Project Components/Calendar.jsx";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -13,6 +14,8 @@ root.render(
     <Provider store={store}>
       <BrowserRouter>
         <MyRouter />
+        {/* <Calendar /> */}
+        {/* <App /> */}
         {/* <HomePageV1 /> */}
         {/* <HomePageV2 /> */}
       </BrowserRouter>

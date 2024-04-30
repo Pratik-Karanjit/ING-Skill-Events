@@ -5,7 +5,8 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import Select from "react-select";
 import * as yup from "yup";
 import NavBar from "./NavBar";
-import Footer from "./Footer";
+import Footer from "./FooterHome";
+import FooterOtherPages from "./FooterOtherPages";
 
 const CreateBranding = () => {
   const navigate = useNavigate();
@@ -188,7 +189,7 @@ const CreateBranding = () => {
           </Formik>
         </div>
       </div>
-      <Footer />
+      <FooterOtherPages />
     </>
   );
 };
