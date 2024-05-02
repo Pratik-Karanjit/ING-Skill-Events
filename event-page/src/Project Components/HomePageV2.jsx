@@ -4,7 +4,6 @@ import axios from "axios";
 import NavBar from "./NavBar";
 import { useNavigate } from "react-router-dom";
 import Footer from "./FooterHome";
-import ParticleComponent from "./particle";
 import ParticlesComponent from "./particle";
 
 const HomePageV2 = () => {

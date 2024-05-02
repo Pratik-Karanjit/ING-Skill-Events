@@ -19,14 +19,17 @@ const Calendar = () => {
     const response = await axios.get(
       `http://localhost:8000/entry/events/${eventId}`
     );
-    // console.log("response data hereeee", response);
+    // console.log("response data of calendar is here", response);
     return response.data;
   }
 
   const fetchData = async () => {
     try {
-      const eventData = await fetchEvents(eventId); // Assuming fetchEvents is defined elsewhere
-      const formattedEvents = formatEvents(eventData.result);
+      const eventData = await fetchEvents(eventId);
+      console.log("eventData is here", eventData);
+      const formattedEvents = formatEvents(eventData?.result);
+      console.log("response data of calendar is here", formattedEvents);
+
       setEvents(formattedEvents);
     } catch (error) {
       console.error("Error fetching events details:", error);
@@ -34,11 +37,28 @@ const Calendar = () => {
   };
 
   const formatEvents = (eventsData) => {
-    return eventsData.map((event) => ({
-      title: event.title,
-      start: new Date(event.start_date),
-      end: new Date(event.end_date),
-    }));
+    // Check if eventsData is an array
+    if (Array.isArray(eventsData)) {
+      return eventsData.map((event) => ({
+        title: event.title,
+        start: new Date(event.start_date),
+        end: new Date(event.end_date),
+      }));
+    } else if (typeof eventsData === "object" && eventsData !== null) {
+      // If eventsData is an object, convert it into an array with a single element
+      return [
+        {
+          title: eventsData.title,
+          start: new Date(eventsData.start_date),
+          end: new Date(eventsData.end_date),
+        },
+      ];
+    } else {
+      // If eventsData is neither an array nor an object
+      console.error("Invalid events data:", eventsData);
+      // Return an empty array
+      return [];
+    }
   };
 
   return (

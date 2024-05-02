@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { setNote } from "../features/noteSlice.js";
 import NavBar from "./NavBar.jsx";
 import FooterOtherPages from "./FooterOtherPages.jsx";
+import Calendar from "./Calendar.jsx";
 
 async function fetchEvents(eventId) {
   const response = await axios.get(
@@ -208,60 +209,65 @@ function EventDetailPage() {
                 src={`http://localhost:8000/${event.result.eventImage}`}
                 alt="image"
               />
-              <div className="event-details">
-                <h1>{event.result?.title}</h1>
-                <table className="event-table">
-                  <tbody>
-                    <tr>
-                      <td className="table-header">
-                        <b>SCOPE</b>
-                      </td>
-                      <td>{event.result?.scope}</td>
-                    </tr>
-                    <tr>
-                      <td className="table-header">
-                        <b>START DATE</b>
-                      </td>
-                      <td>{event.result?.start_date}</td>
-                    </tr>
-                    <tr>
-                      <td className="table-header">
-                        <b>END DATE</b>
-                      </td>
-                      <td>{event.result?.end_date}</td>
-                    </tr>
-                    <tr>
-                      <td className="table-header">
-                        <b>OWNER</b>
-                      </td>
-                      <td>{event.result?.owner}</td>
-                    </tr>
-                    <tr>
-                      <td className="table-header">
-                        <b>TAG</b>
-                      </td>
-                      <td className="event-detail-tag-div">
-                        {event?.result?.tag.split(",").map((tag, index) => (
-                          <button
-                            key={index}
-                            className="event-detail-tag"
-                            style={{
-                              backgroundColor: getButtonColors([tag])[0],
-                            }}
-                          >
-                            {tag.trim()}
-                          </button>
-                        ))}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="table-header">
-                        <b>DESCRIPTION</b>
-                      </td>
-                      <td>{event.result.description}</td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div className="event-hero">
+                <div className="event-details">
+                  <h1>{event.result?.title}</h1>
+                  <table className="event-table">
+                    <tbody>
+                      <tr>
+                        <td className="table-header">
+                          <b>SCOPE</b>
+                        </td>
+                        <td>{event.result?.scope}</td>
+                      </tr>
+                      <tr>
+                        <td className="table-header">
+                          <b>START DATE</b>
+                        </td>
+                        <td>{event.result?.start_date}</td>
+                      </tr>
+                      <tr>
+                        <td className="table-header">
+                          <b>END DATE</b>
+                        </td>
+                        <td>{event.result?.end_date}</td>
+                      </tr>
+                      <tr>
+                        <td className="table-header">
+                          <b>OWNER</b>
+                        </td>
+                        <td>{event.result?.owner}</td>
+                      </tr>
+                      <tr>
+                        <td className="table-header">
+                          <b>TAG</b>
+                        </td>
+                        <td className="event-detail-tag-div">
+                          {event?.result?.tag.split(",").map((tag, index) => (
+                            <button
+                              key={index}
+                              className="event-detail-tag"
+                              style={{
+                                backgroundColor: getButtonColors([tag])[0],
+                              }}
+                            >
+                              {tag.trim()}
+                            </button>
+                          ))}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="table-header">
+                          <b>DESCRIPTION</b>
+                        </td>
+                        <td>{event.result.description}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div className="calendar-hero">
+                  <Calendar />
+                </div>
               </div>
             </>
           ) : (

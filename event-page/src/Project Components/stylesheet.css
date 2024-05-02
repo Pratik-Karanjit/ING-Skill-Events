@@ -583,9 +583,11 @@ button {
   display: flex;
   flex-direction: column;
   padding-top: 25rem;
-  padding-right: 8rem;
+  width: 75%;
   gap: 20px;
-  margin: 5rem 5rem;
+  margin: 5rem;
+  margin-left: 5rem;
+  margin-right: 0rem;
   position: relative;
 }
 
@@ -702,7 +704,7 @@ h1 {
 } */
 
 .event-table {
-  width: 100%;
+  width: 66%;
   border-collapse: collapse;
   margin-top: 20px;
 }
@@ -816,22 +818,43 @@ h1 {
   font-size: 1.5rem;
   color: #333; /* Dark grey color */
 }
-/* .main-wrapper {
+
+.fc-event-time {
+  display: none !important;
+}
+
+.fc-header-toolbar.fc-toolbar {
+  width: 40rem !important;
+}
+
+.fc-dayGridMonth-view.fc-view.fc-daygrid {
+  height: 25rem !important;
+  width: 40rem !important;
+}
+
+.fc-theme-standard td,
+.fc-theme-standard th {
+  border: none;
+}
+
+.fc-view-harness.fc-view-harness-active {
+  height: 30rem !important;
+}
+
+.event-hero {
   display: flex;
-  flex-direction: column;
-  min-height: 100vh; 
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
 }
 
-.content-wrapper {
-  position: relative; 
-  flex: 1;
-}
-
-#particles {
+.calendar-hero {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1; 
-} */
+  right: 10rem;
+  top: 29rem;
+}
+
+.fc-today-button.fc-button.fc-button-primary {
+  display: none;
+}
