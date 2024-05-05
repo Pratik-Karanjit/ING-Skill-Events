@@ -1,5 +1,5 @@
 [build]
-  base = "react project"
+  base = "event-page"
   command = "CI=false npm run build"
   commandOrigin = "config"
 
