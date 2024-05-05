@@ -1,5 +1,5 @@
 import { Router } from "express";
-import successResponse from "../helper/successResponse.js";
+import successResponse from "../helpers/SuccessResponse.js";
 import { HttpStatus } from "../config/constant.js";
 import upload from "../middleware/uploadFile.js";
 

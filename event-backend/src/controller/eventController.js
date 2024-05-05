@@ -1,7 +1,7 @@
 import { HttpStatus, baseUrl } from "../config/constant.js";
-import successResponse from "../helper/successResponse.js";
+import successResponse from "../helpers/SuccessResponse.js";
 import expressAsyncHandler from "express-async-handler";
-import errorResponse from "../helper/ErrorResponse.js";
+import errorResponse from "../helpers/ErrorResponse.js";
 import { Branding, Events, Manpower, Resource } from "../schema/model.js";
 
 export const getAllEvents = expressAsyncHandler(async (req, res) => {
