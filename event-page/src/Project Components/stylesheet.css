@@ -747,6 +747,10 @@ h1 {
   transition: transform 0.3s ease; /* Add transition for smooth animation */
 }
 
+.sm-calendar {
+  display: none;
+}
+
 @media (max-width: 450px) {
   .color-div-section {
     width: 100%;
@@ -795,6 +799,21 @@ h1 {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
     width: 100%;
+  }
+  .sm-calendar {
+    display: block !important;
+  }
+  .sm-calendar .fc-header-toolbar.fc-toolbar {
+    width: 100% !important;
+  }
+  .sm-calendar.fc-dayGridMonth-view.fc-view.fc-daygrid {
+    width: 100% !important;
+  }
+  .sm-calendar .fc-dayGridMonth-view.fc-view.fc-daygrid {
+    width: 100% !important;
+  }
+  .calendar-hero {
+    display: none;
   }
 }
 

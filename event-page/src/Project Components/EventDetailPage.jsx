@@ -274,6 +274,10 @@ function EventDetailPage() {
             <p>Loading event details...</p>
           )}
 
+          <div className="sm-calendar">
+            <Calendar />
+          </div>
+
           <div className="manpower-resource-container">
             {manpower ? (
               <div className="manpower-container">
