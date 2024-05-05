@@ -1,0 +1,16 @@
+[build]
+  base = "react project"
+  command = "CI=false npm run build"
+  commandOrigin = "config"
+
+[environment]
+  DEPRECATED = true
+
+[publish]
+  directory = "/"
+  publishOrigin = "config"
+
+[[redirects]]
+from = "/*"
+to = "index.html"
+status = 200
