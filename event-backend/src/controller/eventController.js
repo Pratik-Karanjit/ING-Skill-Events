@@ -7,6 +7,7 @@ import { Branding, Events, Manpower, Resource } from "../schema/model.js";
 export const getAllEvents = expressAsyncHandler(async (req, res) => {
   try {
     const products = await Events.find();
+    // console.log(products);
 
     successResponse(
       res,
