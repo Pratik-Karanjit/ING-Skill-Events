@@ -302,7 +302,7 @@ function EventDetailPage() {
                 </table>
               </div>
             ) : (
-              <p>No manpower data available</p>
+              <p>Loading manpower data.</p>
             )}
 
             {resource ? (
@@ -330,7 +330,7 @@ function EventDetailPage() {
                 </table>
               </div>
             ) : (
-              <p>No resource data available</p>
+              <p>Loading resource data.</p>
             )}
           </div>
           <div className="branding-container">
@@ -370,7 +370,7 @@ function EventDetailPage() {
                 </tbody>
               </table>
             ) : (
-              <p>No branding data available</p>
+              <p>Loading branding data.</p>
             )}
           </div>
 
