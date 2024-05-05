@@ -23,7 +23,7 @@ const CreateManpower = () => {
   const onSubmit = async (info) => {
     try {
       const result = await axios({
-        url: "http://localhost:8000/entry/events/createManpower",
+        url: "https://ing-skill-events.onrender.com/entry/events/createManpower",
         method: "post",
         data: info,
       });
