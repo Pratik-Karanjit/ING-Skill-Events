@@ -109,8 +109,6 @@ const AdminPanel = () => {
                     component="div"
                     className="error-message"
                   />
-                </div>
-                <div className="form-group">
                   <label htmlFor="owner">Owner:</label>
                   <Field type="text" name="owner" id="owner" />
                   <ErrorMessage
@@ -119,6 +117,7 @@ const AdminPanel = () => {
                     className="error-message"
                   />
                 </div>
+
                 <div className="form-group">
                   <label htmlFor="scope">Scope:</label>
                   <Field type="text" name="scope" id="scope" />
@@ -127,21 +126,10 @@ const AdminPanel = () => {
                     component="div"
                     className="error-message"
                   />
-                </div>
-                <div className="form-group">
                   <label htmlFor="description">Description:</label>
                   <Field type="text" name="description" id="description" />
                   <ErrorMessage
                     name="description"
-                    component="div"
-                    className="error-message"
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="college">College:</label>
-                  <Field type="text" name="college" id="college" />
-                  <ErrorMessage
-                    name="college"
                     component="div"
                     className="error-message"
                   />
@@ -155,9 +143,6 @@ const AdminPanel = () => {
                     component="div"
                     className="error-message"
                   />
-                </div>
-
-                <div className="form-group">
                   <label htmlFor="end_date">End Date:</label>
                   <Field type="date" name="end_date" id="end_date" />
                   <ErrorMessage
@@ -168,6 +153,13 @@ const AdminPanel = () => {
                 </div>
 
                 <div className="form-group">
+                  <label htmlFor="college">College:</label>
+                  <Field type="text" name="college" id="college" />
+                  <ErrorMessage
+                    name="college"
+                    component="div"
+                    className="error-message"
+                  />
                   <label htmlFor="status">Status:</label>
                   <Field as="select" name="status" id="status">
                     <option value="" disabled>
@@ -191,12 +183,10 @@ const AdminPanel = () => {
                     component="div"
                     className="error-message"
                   />
-                </div>
-
-                <div className="form-group">
                   <label htmlFor="tag">Tag:</label>
 
                   <Select
+                    className="admin-select-tag"
                     options={tagOption}
                     value={selectedTags}
                     onChange={(selectedTag) => {
@@ -215,6 +205,7 @@ const AdminPanel = () => {
                     className="error-message"
                   />
                 </div>
+
                 <div className="form-group">
                   <label htmlFor="eventId">Event Id:</label>
                   <Field type="text" name="eventId" id="eventId" />
@@ -223,9 +214,6 @@ const AdminPanel = () => {
                     component="div"
                     className="error-message"
                   />
-                </div>
-
-                <div className="form-group">
                   <label htmlFor="eventImage">Event Image:</label>
                   <Field
                     type="file"
@@ -239,6 +227,7 @@ const AdminPanel = () => {
                     className="error-message"
                   />
                 </div>
+
                 <button type="submit">Create Event</button>
                 <button
                   style={{ marginTop: "20px" }}

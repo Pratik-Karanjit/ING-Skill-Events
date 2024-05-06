@@ -83,6 +83,7 @@ const CreateBranding = () => {
                   <label htmlFor="quantities">Category:</label>
 
                   <Select
+                    className="admin-select-tag"
                     options={categoryOption}
                     value={selectedCategory}
                     onChange={(selectedOption) => {
@@ -101,6 +102,7 @@ const CreateBranding = () => {
                   <label htmlFor="quantities">Asset:</label>
 
                   <Select
+                    className="admin-select-tag"
                     options={assetOption}
                     value={selectedAssets}
                     onChange={(selectedAsset) => {
@@ -122,6 +124,7 @@ const CreateBranding = () => {
                 <div className="form-group">
                   <label htmlFor="quantities">Quantity:</label>
                   <Select
+                    className="admin-select-tag"
                     options={quantityOptions}
                     value={selectedOptions}
                     onChange={(selectedOption) => {
@@ -145,6 +148,7 @@ const CreateBranding = () => {
                   <label htmlFor="quantities">Placement:</label>
 
                   <Select
+                    className="admin-select-tag"
                     options={placementOption}
                     value={selectedPlacements}
                     onChange={(selectedPlacement) => {
@@ -189,6 +193,7 @@ const CreateBranding = () => {
           </Formik>
         </div>
       </div>
+
       <FooterOtherPages />
     </>
   );
