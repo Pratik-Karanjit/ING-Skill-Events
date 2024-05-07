@@ -19,7 +19,9 @@ const HomePageV2 = () => {
 
   const hitApi = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/entry/events");
+      const response = await axios.get(
+        "https://ing-skill-events.onrender.com/entry/events"
+      );
       console.log(response.data);
       // Convert date formats before setting them into state
       const formattedPosts = response.data.result.map((post) => ({
@@ -138,7 +140,7 @@ const HomePageV2 = () => {
 
                     <div>
                       <img
-                        src={`http://localhost:8000/${post.eventImage}`}
+                        src={`https://ing-skill-events.onrender.com/${post.eventImage}`}
                         className="event-image"
                         // src={post.eventImage}
                         alt="Product"

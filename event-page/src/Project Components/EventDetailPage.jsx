@@ -13,7 +13,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 async function fetchEvents(eventId) {
   const response = await axios.get(
-    `http://localhost:8000/entry/events/${eventId}`
+    `https://ing-skill-events.onrender.com/entry/events/${eventId}`
   );
   // console.log("response data hereeee", response);
   return response.data;
@@ -68,7 +68,7 @@ function EventDetailPage() {
   const fetchManpower = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8000/entry/getManpower/${eventId}`
+        `https://ing-skill-events.onrender.com/entry/getManpower/${eventId}`
       );
 
       // console.log("Manpower response", response.data.result);
@@ -81,7 +81,7 @@ function EventDetailPage() {
   const fetchResource = async () => {
     try {
       const resourceResponse = await axios.get(
-        `http://localhost:8000/entry/getResource/${eventId}`
+        `https://ing-skill-events.onrender.com/entry/getResource/${eventId}`
       );
       // console.log("*********resource", resourceResponse);
       setResource(resourceResponse.data.result);
@@ -93,7 +93,7 @@ function EventDetailPage() {
   const fetchBranding = async () => {
     try {
       const brandingResponse = await axios.get(
-        `http://localhost:8000/entry/getBranding/${eventId}`
+        `https://ing-skill-events.onrender.com/entry/getBranding/${eventId}`
       );
       // console.log("*********resource", resourceResponse);
       setBranding(brandingResponse.data.result);
@@ -207,7 +207,7 @@ function EventDetailPage() {
           {event ? (
             <img
               className="event-detail-img"
-              src={`http://localhost:8000/${event.result.eventImage}`}
+              src={`https://ing-skill-events.onrender.com/${event.result.eventImage}`}
               alt="image"
             />
           ) : (

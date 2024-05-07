@@ -65,7 +65,7 @@ const AdminPanel = () => {
       }
 
       const result = await axios.post(
-        "http://localhost:8000/entry/events/create",
+        "https://ing-skill-events.onrender.com/entry/events/create",
         formData
       );
       console.log("Event created successfully");

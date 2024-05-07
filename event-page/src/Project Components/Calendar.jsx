@@ -17,7 +17,7 @@ const Calendar = () => {
 
   async function fetchEvents(eventId) {
     const response = await axios.get(
-      `http://localhost:8000/entry/events/${eventId}`
+      `https://ing-skill-events.onrender.com/entry/events/${eventId}`
     );
     // console.log("response data of calendar is here", response);
     return response.data;

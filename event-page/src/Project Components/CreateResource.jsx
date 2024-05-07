@@ -22,7 +22,7 @@ const CreateResource = () => {
   const onSubmit = async (info) => {
     try {
       const result = await axios({
-        url: "http://localhost:8000/entry/events/createResource",
+        url: "https://ing-skill-events.onrender.com/entry/events/createResource",
         method: "post",
         data: info,
       });
