@@ -8,10 +8,12 @@ import { setNote } from "../features/noteSlice.js";
 import NavBar from "./NavBar.jsx";
 import FooterOtherPages from "./FooterOtherPages.jsx";
 import Calendar from "./Calendar.jsx";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 async function fetchEvents(eventId) {
   const response = await axios.get(
-    `https://ing-skill-events.onrender.com/entry/events/${eventId}`
+    `http://localhost:8000/entry/events/${eventId}`
   );
   // console.log("response data hereeee", response);
   return response.data;
@@ -66,7 +68,7 @@ function EventDetailPage() {
   const fetchManpower = async () => {
     try {
       const response = await axios.get(
-        `https://ing-skill-events.onrender.com/entry/getManpower/${eventId}`
+        `http://localhost:8000/entry/getManpower/${eventId}`
       );
 
       // console.log("Manpower response", response.data.result);
@@ -79,7 +81,7 @@ function EventDetailPage() {
   const fetchResource = async () => {
     try {
       const resourceResponse = await axios.get(
-        `https://ing-skill-events.onrender.com/entry/getResource/${eventId}`
+        `http://localhost:8000/entry/getResource/${eventId}`
       );
       // console.log("*********resource", resourceResponse);
       setResource(resourceResponse.data.result);
@@ -91,7 +93,7 @@ function EventDetailPage() {
   const fetchBranding = async () => {
     try {
       const brandingResponse = await axios.get(
-        `https://ing-skill-events.onrender.com/entry/getBranding/${eventId}`
+        `http://localhost:8000/entry/getBranding/${eventId}`
       );
       // console.log("*********resource", resourceResponse);
       setBranding(brandingResponse.data.result);
@@ -203,140 +205,160 @@ function EventDetailPage() {
       <div className="content-container">
         <div className="event-container">
           {event ? (
-            <>
-              <img
-                className="event-detail-img"
-                src={`https://ing-skill-events.onrender.com/${event.result.eventImage}`}
-                alt="image"
-              />
-              <div className="event-hero">
-                <div className="event-details">
-                  <h1>{event.result?.title}</h1>
-                  <table className="event-table">
-                    <tbody>
-                      <tr>
-                        <td className="table-header">
-                          <b>SCOPE</b>
-                        </td>
-                        <td>{event.result?.scope}</td>
-                      </tr>
-                      <tr>
-                        <td className="table-header">
-                          <b>START DATE</b>
-                        </td>
-                        <td>{event.result?.start_date}</td>
-                      </tr>
-                      <tr>
-                        <td className="table-header">
-                          <b>END DATE</b>
-                        </td>
-                        <td>{event.result?.end_date}</td>
-                      </tr>
-                      <tr>
-                        <td className="table-header">
-                          <b>OWNER</b>
-                        </td>
-                        <td>{event.result?.owner}</td>
-                      </tr>
-                      <tr>
-                        <td className="table-header">
-                          <b>TAG</b>
-                        </td>
-                        <td className="event-detail-tag-div">
-                          {event?.result?.tag.split(",").map((tag, index) => (
-                            <button
-                              key={index}
-                              className="event-detail-tag"
-                              style={{
-                                backgroundColor: getButtonColors([tag])[0],
-                              }}
-                            >
-                              {tag.trim()}
-                            </button>
-                          ))}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="table-header">
-                          <b>DESCRIPTION</b>
-                        </td>
-                        <td>{event.result.description}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div className="calendar-hero">
-                  <Calendar />
-                </div>
-              </div>
-            </>
+            <img
+              className="event-detail-img"
+              src={`http://localhost:8000/${event.result.eventImage}`}
+              alt="image"
+            />
           ) : (
-            <p>Loading event details...</p>
+            <Skeleton height={100} />
           )}
+          <div className="event-hero">
+            <div className="event-details">
+              <h1>{event ? event.result?.title : <Skeleton width={400} />}</h1>
+              <table className="event-table">
+                <tbody>
+                  <tr>
+                    <td className="table-header">
+                      <b>SCOPE</b>
+                    </td>
+                    <td>
+                      {event ? event.result?.scope : <Skeleton count={10} />}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="table-header">
+                      <b>START DATE</b>
+                    </td>
+                    <td>{event ? event.result?.start_date : <Skeleton />}</td>
+                  </tr>
+                  <tr>
+                    <td className="table-header">
+                      <b>END DATE</b>
+                    </td>
+                    <td>{event ? event.result?.end_date : <Skeleton />}</td>
+                  </tr>
+                  <tr>
+                    <td className="table-header">
+                      <b>OWNER</b>
+                    </td>
+                    <td>{event ? event.result?.owner : <Skeleton />}</td>
+                  </tr>
+                  <tr>
+                    <td className="table-header">
+                      <b>TAG</b>
+                    </td>
+                    <td className="event-detail-tag-div">
+                      {event &&
+                        event.result?.tag.split(",").map((tag, index) => (
+                          <button
+                            key={index}
+                            className="event-detail-tag"
+                            style={{
+                              backgroundColor: getButtonColors([tag])[0],
+                            }}
+                          >
+                            {tag.trim()}
+                          </button>
+                        ))}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="table-header">
+                      <b>DESCRIPTION</b>
+                    </td>
+                    <td>{event ? event.result.description : <Skeleton />}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div className="calendar-hero">
+              <Calendar />
+            </div>
+          </div>
 
           <div className="sm-calendar">
             <Calendar />
           </div>
 
           <div className="manpower-resource-container">
-            {manpower ? (
-              <div className="manpower-container">
-                <table className="manpower-table">
-                  <thead>
-                    <tr className="manpower-tr">
-                      <th className="manpower-heading" colSpan="3">
-                        Manpower
-                      </th>
-                    </tr>
-                    <tr>
-                      <th className="manpower-th">Name</th>
-                      <th className="manpower-th">Responsibility</th>
-                      <th className="manpower-th">Mobile Number</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {manpower.map((person, index) => (
+            <div className="manpower-container">
+              <table className="manpower-table">
+                <thead>
+                  <tr className="manpower-tr">
+                    <th className="manpower-heading" colSpan="3">
+                      Manpower
+                    </th>
+                  </tr>
+                  <tr>
+                    <th className="manpower-th">Name</th>
+                    <th className="manpower-th">Responsibility</th>
+                    <th className="manpower-th">Mobile Number</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {manpower ? (
+                    manpower.map((person, index) => (
                       <tr key={index}>
-                        <td className="manpower-td">{person.name}</td>
-                        <td className="manpower-td">{person.responsibility}</td>
-                        <td className="manpower-td">{person.mobile_number}</td>
+                        <td className="manpower-td">
+                          {person ? person.name : <Skeleton />}
+                        </td>
+                        <td className="manpower-td">
+                          {person ? person.responsibility : <Skeleton />}
+                        </td>
+                        <td className="manpower-td">
+                          {person ? person.mobile_number : <Skeleton />}
+                        </td>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            ) : (
-              <p>Loading manpower data.</p>
-            )}
+                    ))
+                  ) : (
+                    <tr>
+                      <td className="manpower-td" colSpan="3">
+                        <Skeleton count={3} />
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
 
-            {resource ? (
-              <div className="resource-container">
-                <table className="resource-table">
-                  <thead>
-                    <tr className="resource-tr">
-                      <th className="resource-heading" colSpan="2">
-                        Resource
-                      </th>
-                    </tr>
-                    <tr>
-                      <th className="resource-th">Item</th>
-                      <th className="resource-th">Quantity</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {resource.map((resource, index) => (
+            <div className="resource-container">
+              <table className="resource-table">
+                <thead>
+                  <tr className="resource-tr">
+                    <th className="resource-heading" colSpan="2">
+                      Resource
+                    </th>
+                  </tr>
+                  <tr>
+                    <th className="resource-th">Item</th>
+                    <th className="resource-th">Quantity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {resource ? (
+                    resource.map((item, index) => (
                       <tr key={index}>
-                        <td className="manpower-td">{resource.item}</td>
-                        <td className="manpower-td">{resource.quantity}</td>
+                        <td className="manpower-td">
+                          {item ? item.item : <Skeleton />}
+                        </td>
+                        <td className="manpower-td">
+                          {item ? item.quantity : <Skeleton />}
+                        </td>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            ) : (
-              <p>Loading resource data.</p>
-            )}
+                    ))
+                  ) : (
+                    <tr>
+                      <td className="manpower-td" colSpan="2">
+                        <Skeleton count={2} />
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
+
           <div className="branding-container">
             {branding ? (
               <table className="branding-table">

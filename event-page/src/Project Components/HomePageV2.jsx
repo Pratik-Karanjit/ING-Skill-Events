@@ -4,6 +4,7 @@ import axios from "axios";
 import NavBar from "./NavBar";
 import { useNavigate } from "react-router-dom";
 import FooterOtherPages from "./FooterOtherPages";
+import Skeleton from "react-loading-skeleton";
 
 const HomePageV2 = () => {
   const [expandBody, setExpandBody] = useState(false);
@@ -18,9 +19,7 @@ const HomePageV2 = () => {
 
   const hitApi = async () => {
     try {
-      const response = await axios.get(
-        "https://ing-skill-events.onrender.com/entry/events"
-      );
+      const response = await axios.get("http://localhost:8000/entry/events");
       console.log(response.data);
       // Convert date formats before setting them into state
       const formattedPosts = response.data.result.map((post) => ({
@@ -74,17 +73,15 @@ const HomePageV2 = () => {
   return (
     <div className="main-wrapper">
       <NavBar />
-      {loading ? (
-        <div style={{ fontSize: "30px", height: "40rem", marginTop: "10rem" }}>
-          Loading...
-        </div>
-      ) : (
-        <React.Fragment>
-          {/* <div className="content-wrapper"> */}
-
-          <div className="container2 ">
-            <div className="color-div-section">
-              {posts.map((post, index) => (
+      <div className="container2 ">
+        <div className="color-div-section">
+          {loading
+            ? Array.from({ length: 5 }).map((_, index) => (
+                <div className="color-div-card skeleton-loading" key={index}>
+                  <Skeleton height={20} count={10} />
+                </div>
+              ))
+            : posts.map((post, index) => (
                 <div className="color-div-card" key={index}>
                   <div
                     className="go-corner"
@@ -141,7 +138,7 @@ const HomePageV2 = () => {
 
                     <div>
                       <img
-                        src={`https://ing-skill-events.onrender.com/${post.eventImage}`}
+                        src={`http://localhost:8000/${post.eventImage}`}
                         className="event-image"
                         // src={post.eventImage}
                         alt="Product"
@@ -150,10 +147,8 @@ const HomePageV2 = () => {
                   </div>
                 </div>
               ))}
-            </div>
-          </div>
-        </React.Fragment>
-      )}
+        </div>
+      </div>
       <FooterOtherPages />
     </div>
   );

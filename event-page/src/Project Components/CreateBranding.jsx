@@ -51,7 +51,7 @@ const CreateBranding = () => {
         .join(",");
       info.quantities = quantityString;
       const result = await axios.post(
-        "https://ing-skill-events.onrender.com/entry/events/createBranding",
+        "http://localhost:8000/entry/events/createBranding",
         info
       );
       console.log("Branding created successfully");
