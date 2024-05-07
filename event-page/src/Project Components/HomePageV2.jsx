@@ -10,6 +10,7 @@ const HomePageV2 = () => {
   const [changeNavColor, setChangeNavColor] = useState(false);
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     hitApi();
@@ -28,6 +29,7 @@ const HomePageV2 = () => {
         end_date: new Date(post.end_date).toLocaleDateString("en-US"),
       }));
       setPosts(formattedPosts);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -72,82 +74,86 @@ const HomePageV2 = () => {
   return (
     <div className="main-wrapper">
       <NavBar />
-      {/* <div className="content-wrapper"> */}
-      {/* <ParticlesComponent id="particles" /> */}
-      <div className="container2 ">
-        <div className="color-div-section">
-          {posts.map((post, index) => (
-            <div
-              className="color-div-card"
-              key={index}
-              // style={{ backgroundColor: getHoverBackgroundColor(index) }}
-            >
-              <div
-                className="go-corner"
-                style={{
-                  backgroundColor: getCornerColor(index),
-                  opacity: 0,
-                }}
-              ></div>
-              <div className="bottom50">
-                <p className="title-p">{post.title}</p>
-                <p className="college-p">{post.college}</p>
-                <div className="direction-buttons">
-                  {post?.tag.split(",").map((tag, index) => (
-                    <button
-                      key={index}
-                      className="tag-button"
-                      style={{ backgroundColor: getButtonColors([tag])[0] }}
-                    >
-                      {tag.trim()}
-                    </button>
-                  ))}
-                </div>
-                <p className="event-description">
-                  {expandBody
-                    ? post.description
-                    : `${post.description?.slice(0, 80)}...`}
-                  <button
-                    className="learn-more-btn2"
-                    onClick={() => handleLearnMore(post.eventId)}
-                  >
-                    <b>{expandBody ? "Read Less" : "Learn More"}</b>
-                  </button>
-                </p>
-                <p>
-                  Hosted By:{" "}
-                  <b style={{ font: "12px", letterSpacing: "0.5px" }}>
-                    {post.owner}
-                  </b>
-                </p>
-                <div className="start-end-div">
-                  <p>
-                    Start Date:{" "}
-                    <b style={{ font: "12px", letterSpacing: "0.5px" }}>
-                      {post.start_date}
-                    </b>
-                  </p>
-                  <p>
-                    &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; End Date:{" "}
-                    <b style={{ font: "12px", letterSpacing: "0.5px" }}>
-                      {post.end_date}
-                    </b>
-                  </p>
-                </div>
-
-                <div>
-                  <img
-                    src={`https://ing-skill-events.onrender.com/${post.eventImage}`}
-                    className="event-image"
-                    // src={post.eventImage}
-                    alt="Product"
-                  />
-                </div>
-              </div>
-            </div>
-          ))}
+      {loading ? (
+        <div style={{ fontSize: "30px", height: "40rem", marginTop: "10rem" }}>
+          Loading...
         </div>
-      </div>
+      ) : (
+        <React.Fragment>
+          {/* <div className="content-wrapper"> */}
+
+          <div className="container2 ">
+            <div className="color-div-section">
+              {posts.map((post, index) => (
+                <div className="color-div-card" key={index}>
+                  <div
+                    className="go-corner"
+                    style={{
+                      backgroundColor: getCornerColor(index),
+                      opacity: 0,
+                    }}
+                  ></div>
+                  <div className="bottom50">
+                    <p className="title-p">{post.title}</p>
+                    <p className="college-p">{post.college}</p>
+                    <div className="direction-buttons">
+                      {post?.tag.split(",").map((tag, index) => (
+                        <button
+                          key={index}
+                          className="tag-button"
+                          style={{ backgroundColor: getButtonColors([tag])[0] }}
+                        >
+                          {tag.trim()}
+                        </button>
+                      ))}
+                    </div>
+                    <p className="event-description">
+                      {expandBody
+                        ? post.description
+                        : `${post.description?.slice(0, 80)}...`}
+                      <button
+                        className="learn-more-btn2"
+                        onClick={() => handleLearnMore(post.eventId)}
+                      >
+                        <b>{expandBody ? "Read Less" : "Learn More"}</b>
+                      </button>
+                    </p>
+                    <p>
+                      Hosted By:{" "}
+                      <b style={{ font: "12px", letterSpacing: "0.5px" }}>
+                        {post.owner}
+                      </b>
+                    </p>
+                    <div className="start-end-div">
+                      <p>
+                        Start Date:{" "}
+                        <b style={{ font: "12px", letterSpacing: "0.5px" }}>
+                          {post.start_date}
+                        </b>
+                      </p>
+                      <p>
+                        &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; End Date:{" "}
+                        <b style={{ font: "12px", letterSpacing: "0.5px" }}>
+                          {post.end_date}
+                        </b>
+                      </p>
+                    </div>
+
+                    <div>
+                      <img
+                        src={`https://ing-skill-events.onrender.com/${post.eventImage}`}
+                        className="event-image"
+                        // src={post.eventImage}
+                        alt="Product"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </React.Fragment>
+      )}
       <FooterOtherPages />
     </div>
   );
