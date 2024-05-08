@@ -80,7 +80,41 @@ const HomePageV2 = () => {
           {loading
             ? Array.from({ length: 5 }).map((_, index) => (
                 <div className="color-div-card skeleton-loading" key={index}>
-                  <Skeleton height={20} count={10} />
+                  <Skeleton
+                    count={3}
+                    style={{ marginTop: 15 }}
+                    height={15}
+                    width={100}
+                    baseColor="#C0C0C0"
+                    highlightColor="424242"
+                  />
+
+                  <Skeleton
+                    count={2}
+                    style={{ marginTop: 10 }}
+                    height={15}
+                    width={380}
+                    baseColor="#C0C0C0"
+                    highlightColor="#525252"
+                  />
+
+                  <Skeleton
+                    count={1}
+                    style={{ marginTop: 10 }}
+                    height={15}
+                    width={100}
+                    baseColor="#C0C0C0"
+                    highlightColor="#525252"
+                  />
+
+                  <Skeleton
+                    count={2}
+                    style={{ marginTop: 10 }}
+                    height={15}
+                    width={380}
+                    baseColor="#C0C0C0"
+                    highlightColor="#525252"
+                  />
                 </div>
               ))
             : posts.map((post, index) => (
@@ -92,6 +126,7 @@ const HomePageV2 = () => {
                       opacity: 0,
                     }}
                   ></div>
+
                   <div className="bottom50">
                     <p className="title-p">{post.title}</p>
                     <p className="college-p">{post.college}</p>
