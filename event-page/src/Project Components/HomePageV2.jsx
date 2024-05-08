@@ -86,7 +86,7 @@ const HomePageV2 = () => {
                     height={15}
                     width={100}
                     baseColor="#C0C0C0"
-                    highlightColor="424242"
+                    highlightColor="#525252"
                   />
 
                   <Skeleton
